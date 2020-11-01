@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad10_2" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Signup View Controller-->
+        <scene sceneID="Dpr-qU-je0">
+            <objects>
+                <viewController id="Im5-jN-dsN" customClass="SignupViewController" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mNH-hT-8ht">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="新規登録画面" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gXI-Ux-Wqs">
+                                <rect key="frame" x="100" y="70" width="610" height="123"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="User name" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="byG-Fl-cNg">
+                                <rect key="frame" x="70" y="243" width="670" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="Ese-UB-dYo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="iNL-s4-3sL">
+                                <rect key="frame" x="70" y="332" width="670" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="Paw-vW-MeS"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="59" id="Urv-4k-eLI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pass Word" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="j6a-yY-Vey">
+                                <rect key="frame" x="70" y="437" width="670" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="dAf-0t-8S9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O51-16-e9b">
+                                <rect key="frame" x="334" y="566" width="119" height="71"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="a7U-zO-tPt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="pushSignupButton:" destination="Im5-jN-dsN" eventType="touchUpInside" id="0wN-Fl-3Xe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69y-MP-Zpz">
+                                <rect key="frame" x="70" y="891" width="116" height="71"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="MQ1-g5-ngq"/>
+                                    <constraint firstAttribute="width" constant="116" id="pW0-Yq-d00"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="戻る">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Np0-Zy-y49"/>
+                                    <segue destination="bLc-PC-mnV" kind="presentation" modalPresentationStyle="fullScreen" id="pWT-nZ-EXr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Iq-Gw-gUp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="O51-16-e9b" firstAttribute="leading" secondItem="9Iq-Gw-gUp" secondAttribute="leading" constant="334" id="2uJ-CV-eSK"/>
+                            <constraint firstItem="gXI-Ux-Wqs" firstAttribute="top" secondItem="9Iq-Gw-gUp" secondAttribute="top" constant="70" id="7lr-yY-B0w"/>
+                            <constraint firstItem="69y-MP-Zpz" firstAttribute="top" secondItem="j6a-yY-Vey" secondAttribute="bottom" constant="395" id="8Hv-sF-srn"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="leading" secondItem="9Iq-Gw-gUp" secondAttribute="leading" constant="70" id="9JF-M3-8Jf"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="top" relation="lessThanOrEqual" secondItem="byG-Fl-cNg" secondAttribute="bottom" constant="40" id="C7U-T5-noa"/>
+                            <constraint firstItem="9Iq-Gw-gUp" firstAttribute="trailing" secondItem="iNL-s4-3sL" secondAttribute="trailing" constant="70" id="H8C-XU-Tv1"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="top" secondItem="mNH-hT-8ht" secondAttribute="top" constant="332" id="HUn-x1-LJf"/>
+                            <constraint firstItem="byG-Fl-cNg" firstAttribute="top" secondItem="gXI-Ux-Wqs" secondAttribute="bottom" constant="50" id="Ic8-fc-hhY"/>
+                            <constraint firstItem="byG-Fl-cNg" firstAttribute="leading" secondItem="9Iq-Gw-gUp" secondAttribute="leading" constant="70" id="J8B-Qf-sbG"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="leading" secondItem="j6a-yY-Vey" secondAttribute="leading" id="MTO-JP-UfD"/>
+                            <constraint firstItem="byG-Fl-cNg" firstAttribute="top" secondItem="gXI-Ux-Wqs" secondAttribute="bottom" constant="50" id="Nag-bC-FRt"/>
+                            <constraint firstItem="9Iq-Gw-gUp" firstAttribute="trailing" secondItem="O51-16-e9b" secondAttribute="trailing" constant="357" id="Rcf-7v-xPj"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="leading" secondItem="byG-Fl-cNg" secondAttribute="leading" id="S8o-7V-NHY"/>
+                            <constraint firstItem="O51-16-e9b" firstAttribute="top" secondItem="j6a-yY-Vey" secondAttribute="bottom" constant="70" id="UbH-CK-Re6"/>
+                            <constraint firstItem="j6a-yY-Vey" firstAttribute="top" secondItem="iNL-s4-3sL" secondAttribute="bottom" constant="46" id="XO2-Tx-xIc"/>
+                            <constraint firstItem="9Iq-Gw-gUp" firstAttribute="trailing" secondItem="byG-Fl-cNg" secondAttribute="trailing" constant="70" id="oEN-Fl-dad"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="top" secondItem="byG-Fl-cNg" secondAttribute="bottom" constant="30" id="tLA-PO-mcE"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="trailing" secondItem="j6a-yY-Vey" secondAttribute="trailing" id="uOh-ry-VPK"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="leading" secondItem="69y-MP-Zpz" secondAttribute="leading" id="wUx-LQ-x6L"/>
+                            <constraint firstItem="gXI-Ux-Wqs" firstAttribute="leading" secondItem="9Iq-Gw-gUp" secondAttribute="leading" constant="100" id="xGk-pn-1bD"/>
+                            <constraint firstItem="9Iq-Gw-gUp" firstAttribute="trailing" secondItem="gXI-Ux-Wqs" secondAttribute="trailing" constant="100" id="xNu-3P-Uk5"/>
+                            <constraint firstItem="iNL-s4-3sL" firstAttribute="trailing" secondItem="byG-Fl-cNg" secondAttribute="trailing" id="xQl-0i-11W"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="iNL-s4-3sL" id="QbV-rJ-qNS"/>
+                        <outlet property="passTextField" destination="j6a-yY-Vey" id="Juo-dI-pw7"/>
+                        <outlet property="usernameTextField" destination="byG-Fl-cNg" id="CCt-9W-3Jl"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="fromSignup" modalPresentationStyle="fullScreen" id="n3E-UR-8dT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyY-HL-uhu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218" y="-577"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="クラスの花壇" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5xv-tF-IZe">
+                                <rect key="frame" x="100" y="912" width="610" height="68"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aes-Nk-Nqa">
+                                <rect key="frame" x="91" y="147" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="自分の部屋">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sSA-Ul-O5G"/>
+                                    <segue destination="Iyx-XY-n4h" kind="presentation" modalPresentationStyle="fullScreen" id="7dB-oa-Ruf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBR-se-Z5k">
+                                <rect key="frame" x="415" y="147" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="学生掲示板">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toStudentBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yXT-se-VIQ"/>
+                                    <segue destination="MTu-qC-SNy" kind="presentation" modalPresentationStyle="fullScreen" id="2X5-ye-2ma"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbx-Xo-Vbq">
+                                <rect key="frame" x="586" y="147" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="自習部屋">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toStudyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZFl-jN-YRV"/>
+                                    <segue destination="kYF-lX-KmF" kind="presentation" modalPresentationStyle="fullScreen" id="FI8-4a-1rB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-03-vaR">
+                                <rect key="frame" x="260" y="147" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="全体掲示板">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toPublicBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WEK-ZH-Atm"/>
+                                    <segue destination="vCh-QN-KNY" kind="presentation" modalPresentationStyle="fullScreen" id="pcS-20-YJJ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="アプリのホーム" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bRk-hC-Cvl">
+                                <rect key="frame" x="100" y="30" width="610" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5xv-tF-IZe" secondAttribute="trailing" constant="50" id="CDa-6H-k8Y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5xv-tF-IZe" secondAttribute="trailing" constant="50" id="CfP-IS-7Zn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5xv-tF-IZe" secondAttribute="bottom" constant="100" id="DOH-D9-OfQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5xv-tF-IZe" secondAttribute="trailing" constant="100" id="Fpe-tx-wm8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5xv-tF-IZe" secondAttribute="bottom" constant="100" id="O3x-Gn-iUI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5xv-tF-IZe" secondAttribute="trailing" constant="6" id="fKO-4f-tKx"/>
+                            <constraint firstItem="5xv-tF-IZe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="6" id="h2s-2j-eOZ"/>
+                            <constraint firstItem="5xv-tF-IZe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="l84-J2-w1s"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5xv-tF-IZe" secondAttribute="trailing" constant="100" id="meb-BQ-jQa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5xv-tF-IZe" secondAttribute="bottom" constant="200" id="sbl-b6-5RB"/>
+                            <constraint firstItem="5xv-tF-IZe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="uHO-QV-cUX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="stK-Df-mya"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="529.62962962962956" y="118.88888888888889"/>
+        </scene>
+        <!--All Board-->
+        <scene sceneID="1nm-7q-MQy">
+            <objects>
+                <viewController id="vCh-QN-KNY" customClass="AllBoard" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LRm-nv-2rO">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="全体の掲示板" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Os7-6V-t8g">
+                                <rect key="frame" x="100" y="70" width="610" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rj5-kR-MYj">
+                                <rect key="frame" x="52" y="899" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="ホームに戻る">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fiZ-H5-pzY"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="oKA-6a-bHA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIm-zO-RRm">
+                                <rect key="frame" x="673" y="899" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="追加">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="addBoard:" destination="vCh-QN-KNY" eventType="touchUpInside" id="8ZZ-pC-t1c"/>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k7w-fV-n9i"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVL-jV-FwH">
+                                <rect key="frame" x="204" y="875" width="403" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Content" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nll-5i-VUb">
+                                <rect key="frame" x="204" y="942" width="403" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jW2-y1-Kmg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="UserName" destination="EVL-jV-FwH" id="QRf-tT-fDe"/>
+                        <outlet property="content" destination="Nll-5i-VUb" id="bh3-6y-ld7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tZB-ct-YbI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320" y="431.66666666666663"/>
+        </scene>
+        <!--Student Board-->
+        <scene sceneID="0im-TA-myE">
+            <objects>
+                <viewController id="MTu-qC-SNy" customClass="StudentBoard" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Agh-Cj-DhW">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="学生の掲示板" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFF-do-dui">
+                                <rect key="frame" x="137" y="78" width="610" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2L-RR-CcH">
+                                <rect key="frame" x="137" y="860" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="ホームに戻る">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4rM-XV-BQX"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="NMd-76-otM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OHk-l4-O5H"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oui-ee-Fat" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1301" y="1238"/>
+        </scene>
+        <!--Study Room-->
+        <scene sceneID="PPu-ho-wpc">
+            <objects>
+                <viewController id="kYF-lX-KmF" customClass="StudyRoom" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Caq-0m-Z2u">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="自習室" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ptt-UB-vIU">
+                                <rect key="frame" x="134" y="80" width="610" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gV-Ql-vDR">
+                                <rect key="frame" x="134" y="862" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="ホームに戻る">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5gg-zd-d2j"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="Gdc-Ff-ohB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ci4-rT-f3K"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kwx-yW-wlg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1301" y="2097"/>
+        </scene>
+        <!--My Room-->
+        <scene sceneID="cMc-lp-hNF">
+            <objects>
+                <viewController id="Iyx-XY-n4h" customClass="MyRoom" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZHe-bP-3sz">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="自分の部屋" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHb-5f-B1Y">
+                                <rect key="frame" x="100" y="55" width="610" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3U-IR-v08">
+                                <rect key="frame" x="66" y="784" width="102" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="ホームに戻る">
+                                    <color key="titleShadowColor" systemColor="opaqueSeparatorColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="toMyRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wi3-RC-18s"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="0NQ-jP-MhA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oRA-Mh-5ic"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BpD-eV-0CY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kFZ-Fe-Kml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1301" y="-306"/>
+        </scene>
+        <!--Signin View Controller-->
+        <scene sceneID="93x-jk-mBy">
+            <objects>
+                <viewController id="bLc-PC-mnV" customClass="SigninViewController" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sjg-IJ-GGl">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ログイン" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0N1-Bt-KOD">
+                                <rect key="frame" x="50" y="25" width="710" height="68"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="ong-N7-KL9">
+                                <rect key="frame" x="50" y="193" width="710" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="V3K-N7-fsO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pass Word" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-nm-J5b">
+                                <rect key="frame" x="50" y="302" width="710" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="T6x-it-H00"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01J-4f-jMe">
+                                <rect key="frame" x="173" y="461" width="119" height="71"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="71" id="OGM-N0-byC"/>
+                                    <constraint firstAttribute="width" constant="119" id="StV-lx-LUW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="pushSigninButton:" destination="bLc-PC-mnV" eventType="touchUpInside" id="c6V-T5-FYV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWe-hx-unx">
+                                <rect key="frame" x="527" y="461" width="119" height="71"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="QT8-Gw-chK"/>
+                                    <constraint firstAttribute="width" constant="119" id="fq2-FV-ua8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <segue destination="Im5-jN-dsN" kind="presentation" modalPresentationStyle="fullScreen" id="yhr-hf-wmK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SkY-Vv-Gb7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cg5-nm-J5b" firstAttribute="trailing" secondItem="ong-N7-KL9" secondAttribute="trailing" id="3Ku-hW-BNx"/>
+                            <constraint firstItem="01J-4f-jMe" firstAttribute="leading" secondItem="SkY-Vv-Gb7" secondAttribute="leading" constant="173" id="3ZN-fq-K3q"/>
+                            <constraint firstItem="SkY-Vv-Gb7" firstAttribute="trailing" secondItem="ong-N7-KL9" secondAttribute="trailing" constant="50" id="3xB-5c-J8T"/>
+                            <constraint firstItem="ong-N7-KL9" firstAttribute="top" secondItem="0N1-Bt-KOD" secondAttribute="bottom" constant="100" id="4vO-XA-xrk"/>
+                            <constraint firstItem="01J-4f-jMe" firstAttribute="top" secondItem="Cg5-nm-J5b" secondAttribute="bottom" constant="100" id="8Ru-Mc-oxD"/>
+                            <constraint firstItem="0N1-Bt-KOD" firstAttribute="leading" secondItem="SkY-Vv-Gb7" secondAttribute="leading" constant="50" id="Bx5-0q-B5K"/>
+                            <constraint firstItem="Cg5-nm-J5b" firstAttribute="leading" secondItem="ong-N7-KL9" secondAttribute="leading" id="EhJ-bj-1l8"/>
+                            <constraint firstItem="SkY-Vv-Gb7" firstAttribute="trailing" secondItem="0N1-Bt-KOD" secondAttribute="trailing" constant="50" id="INV-Bx-o64"/>
+                            <constraint firstItem="ong-N7-KL9" firstAttribute="leading" secondItem="SkY-Vv-Gb7" secondAttribute="leading" constant="50" id="XNe-rq-8bd"/>
+                            <constraint firstItem="SkY-Vv-Gb7" firstAttribute="trailing" secondItem="DWe-hx-unx" secondAttribute="trailing" constant="124" id="lzN-15-nQR"/>
+                            <constraint firstItem="0N1-Bt-KOD" firstAttribute="top" secondItem="SkY-Vv-Gb7" secondAttribute="top" constant="25" id="tu2-Uz-euY"/>
+                            <constraint firstItem="Cg5-nm-J5b" firstAttribute="top" secondItem="ong-N7-KL9" secondAttribute="bottom" constant="50" id="wXb-La-Yeq"/>
+                            <constraint firstItem="DWe-hx-unx" firstAttribute="top" secondItem="Cg5-nm-J5b" secondAttribute="bottom" constant="85" id="yqj-ay-PpF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="ong-N7-KL9" id="QDD-xf-fyg"/>
+                        <outlet property="passTextField" destination="Cg5-nm-J5b" id="Jdn-M1-oTi"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="fromLogin" modalPresentationStyle="fullScreen" id="7lv-zo-inh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ScV-CC-rga" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-998" y="119"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yhr-hf-wmK"/>
+        <segue reference="oKA-6a-bHA"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

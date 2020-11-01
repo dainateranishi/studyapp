@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "3E4151CA-395E-4FE5-9519-97A29AF200BF"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A3DDD3FD-AE1E-4B45-9C31-844A4C4491A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/Board.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "Board"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "A3DDD3FD-AE1E-4B45-9C31-844A4C4491A7 - 4919e2c0ea17f1a0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.Board.UserName.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/Board.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "A3DDD3FD-AE1E-4B45-9C31-844A4C4491A7 - e76bbe6db23995ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.Board.UserName.setter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/Board.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  uuid = "A3DDD3FD-AE1E-4B45-9C31-844A4C4491A7 - efe7b35d6655aa11"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.Board.UserName.modify : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/Board.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  uuid = "A3DDD3FD-AE1E-4B45-9C31-844A4C4491A7 - f350d2908aa42ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.Board.UserName.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/Board.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7829F224-33A2-4CA5-BF93-DB4E2B4E5147"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/AllBoard.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "AllBoard"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>67362170988-thjiv47ant2tip8p85e4d2bu8fbue5km.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.67362170988-thjiv47ant2tip8p85e4d2bu8fbue5km</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBA0aeS56nTljvxcS7VHA6cNMwwjkNm1kg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>67362170988</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>daina-teranishi.student</string>
+	<key>PROJECT_ID</key>
+	<string>studyinteraction-494ef</string>
+	<key>STORAGE_BUCKET</key>
+	<string>studyinteraction-494ef.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:67362170988:ios:6a3382c83dc60ed0791049</string>
+	<key>DATABASE_URL</key>
+	<string>https://studyinteraction-494ef.firebaseio.com</string>
+</dict>
+</plist>
