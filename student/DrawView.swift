@@ -19,7 +19,7 @@ class DrawView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
         
-        self.db.collection("draw").addSnapshotListener({querySnapshot, err in
+        self.db.collection("draw").addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(err!)")
                 return
@@ -50,6 +50,8 @@ class DrawView: UIView {
                         drawing.points = points
                         
                         self.finishedDrawings.append((diff.document.documentID, drawing))
+                        setNeedsDisplay()
+                        
                     }
                 }
                 if (diff.type == .modified) {
@@ -57,9 +59,19 @@ class DrawView: UIView {
                 }
                 if (diff.type == .removed) {
                     print("Removed")
+                    let docID = diff.document.documentID
+
+                    for i in 0...self.finishedDrawings.count{
+                        if docID == self.finishedDrawings[i].0 {
+                            self.finishedDrawings.remove(at: i)
+                            setNeedsDisplay()
+                            break
+                        }
+                    }
                 }
             }
         })
+        setNeedsDisplay()
         
     }
     
@@ -100,9 +112,11 @@ class DrawView: UIView {
         if var drawing = currentDrawing {
             let touch = touches.first!
             let location = touch.location(in: self)
+            print("finishDraw: \(finishedDrawings.count)")
+            print(finishedDrawings)
             let docID = "draw" + String(finishedDrawings.count)
             drawing.points.append(location)
-            finishedDrawings.append((docID, drawing))
+//            finishedDrawings.append((docID, drawing))
             writeDB(docID: docID, draw: drawing)
         }
         currentDrawing = nil
@@ -110,7 +124,10 @@ class DrawView: UIView {
     }
     
     func clear() {
-        finishedDrawings.removeAll()
+        finishedDrawings.forEach{(docID, draw) in
+            removeDB(docID: docID)
+        }
+//        finishedDrawings.removeAll()
         setNeedsDisplay()
     }
     
@@ -118,7 +135,9 @@ class DrawView: UIView {
         if finishedDrawings.count == 0 {
             return
         }
-        finishedDrawings.remove(at: finishedDrawings.count - 1)
+        let  latestDraw = finishedDrawings[finishedDrawings.count - 1].0
+//        finishedDrawings.remove(at: finishedDrawings.count - 1)
+        removeDB(docID: latestDraw)
         setNeedsDisplay()
     }
     
@@ -170,6 +189,16 @@ class DrawView: UIView {
                 print("Document added with ID: \(docID)")
             }
             
+        }
+    }
+    
+    func removeDB(docID: String) -> Void {
+        self.db.collection("draw").document(docID).delete(){err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed : \(docID)!")
+            }
         }
     }
 }
