@@ -13,6 +13,7 @@ class Board: UIView {
 
     @IBOutlet weak var UserName: UILabel!
     @IBOutlet weak var content: UILabel!
+    @IBOutlet weak var title: UILabel!
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override init(frame: CGRect) {
@@ -21,15 +22,17 @@ class Board: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-            configure()
-        }
+        super.init(coder: aDecoder)
+        configure()
+    }
 
     private func configure() {
+        print("作るよ")
         
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "Board" , bundle: bundle)
         guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+        view.backgroundColor = UIColor.init(red: 230/255, green: 255/255, blue: 230/255, alpha: 90/100)
         addSubview(view)
         
         }

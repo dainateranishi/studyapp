@@ -15,24 +15,25 @@ class AllBoard: UIViewController {
  
 
     @IBOutlet weak var UserName: UITextField!
+    @IBOutlet weak var Title_area: UITextField!
     @IBOutlet weak var content: UITextField!
     
+    var boarddb:BoardDB = BoardDB(board: "allboard")
+    
+    
+    
     // 投稿インスタンス
-    var boards: [Board] = []
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    var num_board = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // 画面背景を設定
-        self.view.backgroundColor = UIColor(red:0.85,green:1.0,blue:0.95,alpha:1.0)
-
+        self.boarddb.readAllBoards(view: self.view)
     }
     
     // 画面にタッチで呼ばれる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan")
+        print(boarddb.boards)
         
     }
     
@@ -49,28 +50,8 @@ class AllBoard: UIViewController {
         let newDx = touchEvent.location(in: self.view).x
         let newDy = touchEvent.location(in: self.view).y
 
-        // ドラッグしたx座標の移動距離
-        let dx = newDx - preDx
-        print("x:\(dx)")
-
-        // ドラッグしたy座標の移動距離
-        let dy = newDy - preDy
-        print("y:\(dy)")
-
-        // 画像のフレーム
-        var viewFrame: CGRect = boards[appDelegate.whichBoard].frame
-
-        // 移動分を反映させる
-        viewFrame.origin.x += dx
-        viewFrame.origin.y += dy
-
-        boards[appDelegate.whichBoard].frame = viewFrame
         
-        self.view.addSubview(boards[appDelegate.whichBoard])
-
-        // 小数点以下２桁のみ表示
-//        labelX.text = "x: ".appendingFormat("%.2f", newDx)
-//        labelY.text = "y: ".appendingFormat("%.2f", newDy)
+        boarddb.moveBoard(view: self.view, preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy)
     }
  
     override func didReceiveMemoryWarning() {
@@ -88,6 +69,7 @@ class AllBoard: UIViewController {
         let board = Board()
         
         if let username = UserName.text,
+           let title = Title_area.text,
            let con = content.text {
             if username.isEmpty {
                 SVProgressHUD.showError(withStatus: "Oops!")
@@ -99,34 +81,35 @@ class AllBoard: UIViewController {
                 content.layer.borderColor = UIColor.red.cgColor
                 return
             }
+            if title.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                Title_area.layer.borderColor = UIColor.red.cgColor
+                return
+            }
             UserName.text = ""
             content.text = ""
+            Title_area.text = ""
             
             board.UserName.text = username
             board.content.text = con
+            board.title.text = title
+    
+
+            // スクリーン中央に設定
+            var point = CGPoint(x:screenWidth/2, y:screenHeight/2)
+            
+            
+            boarddb.writeDB(name: username, title: title, content: con, x:0, y:0, width:250, height:250, point: point, view: self.view)
+            
             
         }
         
-        board.tag = num_board
-        appDelegate.whichBoard = num_board
-        num_board += 1
-        
-        // 画像のフレームを設定
-        board.frame = CGRect(x:0, y:0, width:250, height:150)
 
-        // 画像をスクリーン中央に設定
-        board.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
-
-        // タッチ操作を enable
-        board.isUserInteractionEnabled = true
-
-        self.view.addSubview(board)
-
-        
-        boards.append(board)
-        
     }
     
+    
+    
+    //キーボードの表示に関すること
     
     override func viewWillAppear(_ animated: Bool) {
 

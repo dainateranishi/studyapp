@@ -15,6 +15,8 @@ target 'student' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'SVProgressHUD'
+  pod 'Firebase/Firestore'
+  pod'FirebaseFirestoreSwift'
 
   target 'studentTests' do
     inherit! :search_paths
