@@ -18,22 +18,20 @@ class AllBoard: UIViewController {
     @IBOutlet weak var Title_area: UITextField!
     @IBOutlet weak var content: UITextField!
     
-    var boarddb:BoardDB = BoardDB(board: "allboard")
-    
-    
-    
+    var boarddb:BoardDB?
     // 投稿インスタンス
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.boarddb.readAllBoards(view: self.view)
+        self.boarddb = BoardDB(board: "allboard", view: self.view, centerX: view.frame.size.width/2, centerY: view.frame.size.height/2)
     }
     
     // 画面にタッチで呼ばれる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan")
-        print(boarddb.boards)
+        print(boarddb!.boards)
         
     }
     
@@ -51,7 +49,7 @@ class AllBoard: UIViewController {
         let newDy = touchEvent.location(in: self.view).y
 
         
-        boarddb.moveBoard(view: self.view, preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy)
+        boarddb!.moveBoard(preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy)
     }
  
     override func didReceiveMemoryWarning() {
@@ -61,12 +59,6 @@ class AllBoard: UIViewController {
  
  
     @IBAction func addBoard(_ sender: Any) {
-        // Screen Size の取得
-        let screenWidth:CGFloat = view.frame.size.width
-        let screenHeight:CGFloat = view.frame.size.height
-  
-        
-        let board = Board()
         
         if let username = UserName.text,
            let title = Title_area.text,
@@ -89,17 +81,10 @@ class AllBoard: UIViewController {
             UserName.text = ""
             content.text = ""
             Title_area.text = ""
-            
-            board.UserName.text = username
-            board.content.text = con
-            board.title.text = title
     
-
-            // スクリーン中央に設定
-            var point = CGPoint(x:screenWidth/2, y:screenHeight/2)
             
             
-            boarddb.writeDB(name: username, title: title, content: con, x:0, y:0, width:250, height:250, point: point, view: self.view)
+            boarddb!.writeDB(name: username, title: title, content: con, width:250, height:250)
             
             
         }
