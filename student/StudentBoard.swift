@@ -7,7 +7,14 @@
 
 
 //import Foundation
+//
+//  AllBoard.swift
+//  student
+//
+//  Created by 寺西帝乃 on 2020/10/30.
+//
 
+//import Foundation
 import UIKit
 import Firebase
 import FirebaseAuth
@@ -15,9 +22,9 @@ import SVProgressHUD
 
 class StudentBoard: UIViewController {
  
-    @IBOutlet weak var UserName: UITextField!
-    @IBOutlet weak var content: UITextField!
+
     @IBOutlet weak var Title_area: UITextField!
+    @IBOutlet weak var content: UITextField!
     
     var boarddb:BoardDB?
     // 投稿インスタンス
@@ -26,7 +33,7 @@ class StudentBoard: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.boarddb = BoardDB(board: "studentboard", view: self.view, centerX: view.frame.size.width/2, centerY: view.frame.size.height/2)
+        self.boarddb = BoardDB(board: "studentboard", className: self.appDelegate.whichClass!, view: self.view, centerX: view.frame.size.width/2, centerY: view.frame.size.height/2)
     }
     
     // 画面にタッチで呼ばれる
@@ -60,14 +67,10 @@ class StudentBoard: UIViewController {
  
  
     @IBAction func addBoard(_ sender: Any) {
-        if let username = UserName.text,
-           let title = Title_area.text,
+        
+        if let title = Title_area.text,
            let con = content.text {
-            if username.isEmpty {
-                SVProgressHUD.showError(withStatus: "Oops!")
-                UserName.layer.borderColor = UIColor.red.cgColor
-                return
-            }
+        
             if con.isEmpty {
                 SVProgressHUD.showError(withStatus: "Oops!")
                 content.layer.borderColor = UIColor.red.cgColor
@@ -78,13 +81,12 @@ class StudentBoard: UIViewController {
                 Title_area.layer.borderColor = UIColor.red.cgColor
                 return
             }
-            UserName.text = ""
             content.text = ""
             Title_area.text = ""
     
             
             
-            boarddb!.writeDB(name: username, title: title, content: con, width:250, height:250)
+            boarddb!.writeDB(name: self.appDelegate.UserName!, title: title, content: con, width:250, height:250)
             
             
         }

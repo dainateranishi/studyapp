@@ -11,7 +11,8 @@ import Firebase
 
 class BoardDB{
     let db = Firestore.firestore()
-    let collection: String
+    let className: String
+    let board: String
     let view: UIView
     let centerX: CGFloat
     let centerY: CGFloat
@@ -24,15 +25,16 @@ class BoardDB{
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
-    init(board: String, view: UIView, centerX: CGFloat, centerY: CGFloat) {
-        self.collection = board
+    init(board: String, className: String, view: UIView, centerX: CGFloat, centerY: CGFloat) {
+        self.board = board
         self.view = view
+        self.className = className
         self.centerX = centerX
         self.centerY = centerY
         
 //        self.readAllBoards()
         
-        self.db.collection(self.collection).addSnapshotListener({querySnapshot, err in
+        self.db.collection("class").document(self.className).collection(self.board).addSnapshotListener({querySnapshot, err in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(err!)")
                 return
@@ -41,17 +43,17 @@ class BoardDB{
                 if (diff.type == .added) {
                     print("New Board: \(diff.document.data())")
                     print("is Modified: \(diff.document.metadata.hasPendingWrites ? "Local" : "Server")")
-                    if let username:String = diff.document.get("username")as! String,
-                       let title:String = diff.document.get("title")as! String,
-                       let content:String = diff.document.get("content")as! String,
-                       let x:CGFloat = diff.document.get("x")as! CGFloat,
-                       let y:CGFloat = diff.document.get("y")as! CGFloat,
-                       let width:CGFloat = diff.document.get("width")as! CGFloat,
-                       let height:CGFloat = diff.document.get("height")as! CGFloat,
-                       let frame:CGRect = CGRect(x: x, y: y, width: width, height: height),
-                       let point:CGPoint = CGPoint(x: x, y: y){
+                    if let username = diff.document.get("username"),
+                       let title = diff.document.get("title"),
+                       let content = diff.document.get("content"),
+                       let x = diff.document.get("x"),
+                       let y = diff.document.get("y"),
+                       let width = diff.document.get("width"),
+                       let height = diff.document.get("height"),
+                       let frame:CGRect = CGRect(x: x as! CGFloat, y: y as! CGFloat, width: width as! CGFloat, height: height as! CGFloat),
+                       let point:CGPoint = CGPoint(x: x as! CGFloat, y: y as! CGFloat){
                         print("ok")
-                        self.boards.append((diff.document.documentID, self.makeBoard(username: username, title: title, content: content, frame: frame, point: point)));
+                        self.boards.append((diff.document.documentID, self.makeBoard(username: username as! String, title: title as! String, content: content as! String, frame: frame, point: point)));
                         self.boards[self.num_boards].1.tag = self.num_boards
                         self.appDelegate.whichBoard = self.num_boards
                         self.view.addSubview(self.boards[self.num_boards].1)
@@ -97,7 +99,7 @@ class BoardDB{
         let dy = newDy - preDy
         print("y:\(dy)")
         
-        self.db.collection(self.collection).document(self.boards[appDelegate.whichBoard!].0).updateData([
+        self.db.collection("class").document(self.className).collection(self.board).document(self.boards[appDelegate.whichBoard!].0).updateData([
             "x": newDx,
             "y": newDy,
             "dx": dx,
@@ -133,7 +135,7 @@ class BoardDB{
     func writeDB(name: String, title: String, content: String,width: CGFloat, height: CGFloat){
         
         var ref: DocumentReference? = nil
-        ref = self.db.collection(self.collection).addDocument(data: [
+        ref = self.db.collection("class").document(self.className).collection(self.board).addDocument(data: [
             "username": name,
             "title": title,
             "content": content,

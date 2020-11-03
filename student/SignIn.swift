@@ -10,9 +10,13 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 
+
 class SigninViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
+    @IBOutlet weak var classTextField: UITextField!
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +32,8 @@ class SigninViewController: UIViewController {
     
     @IBAction func pushSigninButton(_ sender: Any) {
         if let email = emailTextField.text,
-           let password = passTextField.text {
+           let password = passTextField.text ,
+           let className = classTextField.text{
             if email.isEmpty {
                 SVProgressHUD.showError(withStatus: "Oops!")
                 emailTextField.layer.borderColor = UIColor.red.cgColor
@@ -42,6 +47,7 @@ class SigninViewController: UIViewController {
             emailTextField.layer.borderColor = UIColor.black.cgColor
             passTextField.layer.borderColor = UIColor.black.cgColor
             
+   
             SVProgressHUD.show()
 
             // ログイン
@@ -51,8 +57,18 @@ class SigninViewController: UIViewController {
                     SVProgressHUD.showError(withStatus: "Error!")
                     return
                 } else {
+                    print(email)
+                    print(password)
                     SVProgressHUD.showSuccess(withStatus: "Success!")
                     self.performSegue(withIdentifier: "fromLogin", sender: nil)
+                    let user = Auth.auth().currentUser
+                    if let user = user{
+                        self.appDelegate.whichClass = className
+                        self.appDelegate.UserName = user.displayName
+                        print(user.email)
+                        print(self.appDelegate.whichClass!)
+                        print(self.appDelegate.UserName!)
+                        }
                     }
                 }
             }

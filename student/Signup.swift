@@ -15,6 +15,11 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
+    @IBOutlet weak var classTextField: UITextField!
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    let db = Firestore.firestore()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +40,8 @@ class SignupViewController: UIViewController {
         
         if let username = usernameTextField.text,
            let email = emailTextField.text,
-           let password = passTextField.text {
+           let password = passTextField.text,
+           let className = classTextField.text{
             if username.isEmpty {
                 SVProgressHUD.showError(withStatus: "Oops!")
                 usernameTextField.layer.borderColor = UIColor.red.cgColor
@@ -51,9 +57,15 @@ class SignupViewController: UIViewController {
                 passTextField.layer.borderColor = UIColor.red.cgColor
                 return
             }
+            if className.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                classTextField.layer.borderColor = UIColor.red.cgColor
+                return
+            }
             usernameTextField.layer.borderColor = UIColor.black.cgColor
             emailTextField.layer.borderColor = UIColor.black.cgColor
             passTextField.layer.borderColor = UIColor.black.cgColor
+            classTextField.layer.borderColor = UIColor.black.cgColor
 
             SVProgressHUD.show()
 
@@ -77,6 +89,17 @@ class SignupViewController: UIViewController {
                         }
                         SVProgressHUD.showSuccess(withStatus: "Success!")
                         self.performSegue(withIdentifier: "fromSignup", sender: nil)
+                        let dt = Date()
+                        let dateFormatter = DateFormatter()// DateFormatter を使用して書式とロケールを指定する
+                        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
+                        print("Log In : \(dateFormatter.string(from: dt))")
+                        
+                        self.db.collection("class").document(className).collection(username).document("help").setData(["created at": dateFormatter.string(from: dt)])
+                        
+                        self.appDelegate.whichClass = className
+                        self.appDelegate.UserName = user.displayName
+                        print(self.appDelegate.whichClass!)
+                        print(self.appDelegate.UserName!)
                         
                     }
                 } else {

@@ -15,11 +15,27 @@ class DrawView: UIView {
     var finishedDrawings:[(String, Drawing)] = []
     var currentColor = UIColor.black
     let db = Firestore.firestore()
+    var Note = ""
+    var Page = ""
+    var className = ""
+    var UserName = ""
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder:aDecoder)
+    
+    func readyDB(note: String, page: String) -> Void {
+        self.finishedDrawings = []
+        self.currentColor = UIColor.black
+        self.Note = note
+        self.Page = page
+        self.className = self.appDelegate.whichClass!
+        self.UserName = self.appDelegate.UserName!
         
-        self.db.collection("draw").addSnapshotListener({ [self]querySnapshot, err in
+        print(self.Note)
+        print(self.Page)
+        print(self.UserName)
+        print(self.className)
+        
+        self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(err!)")
                 return
@@ -28,19 +44,19 @@ class DrawView: UIView {
                 if (diff.type == .added) {
                     print("New draw: \(diff.document.data())")
                     print("is Modified: \(diff.document.metadata.hasPendingWrites ? "Local" : "Server")")
-                    if let color:String = diff.document.get("color")as? String,
-                       let point:Array = diff.document.get("point")as? Array<Any>{
+                    if let color = diff.document.get("color"),
+                       let point = diff.document.get("point"){
                         print("ok")
                         
                         var col = UIColor.black
-                        if color == "blue"{
+                        if color as! String == "blue"{
                             col = UIColor.blue
-                        }else if color == "red"{
+                        }else if color as! String == "red"{
                             col = UIColor.red
                         }
                         
                         var points = [CGPoint]()
-                        for po in point{
+                        for po in point as! Array<Any>{
                             let p = po as! Dictionary<String, CGFloat>
                             points.append(CGPoint(x: p["x"]!, y: p["y"]!))
                         }
@@ -72,8 +88,9 @@ class DrawView: UIView {
             }
         })
         setNeedsDisplay()
-        
     }
+    
+
     
     override func draw(_ rect: CGRect) {
         for (_, drawing) in finishedDrawings {
@@ -179,7 +196,7 @@ class DrawView: UIView {
             color = "red"
         }
         
-        self.db.collection("draw").document(docID).setData([
+        self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).document(docID).setData([
             "color": color,
             "point": point
         ]){err in
@@ -193,7 +210,7 @@ class DrawView: UIView {
     }
     
     func removeDB(docID: String) -> Void {
-        self.db.collection("draw").document(docID).delete(){err in
+        self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).document(docID).delete(){err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {

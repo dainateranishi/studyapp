@@ -12,11 +12,17 @@ import Firebase
 class StudyRoom: UIViewController {
     @IBOutlet weak var drawView: DrawView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var Page: UILabel!
+    var PageNum = 0
+    let Note = "note1"
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
+        Page.text = "page" + String(PageNum)
         super.viewDidLoad()
         segmentedControl.selectedSegmentIndex = 0
+        Page.text = "page" + String(PageNum)
+        drawView.readyDB(note: Note, page: Page.text!)
         // Do any additional setup after loading the view.
     }
 
@@ -42,26 +48,18 @@ class StudyRoom: UIViewController {
                     }
                 drawView.setDrawingColor(color: c)
     }
-
-    @IBAction func tapDB(_ sender: Any) {
-        self.db.collection("draw").getDocuments(){(querySnapshot, err) in
-            if let err = err{
-                print("Error \(err)")
-            }else{
-                for  document in querySnapshot!.documents  {
-                    let po = document.get("point") as! Array<Any>
-                    print(po)
-                    print(type(of: po))
-                    for p in po {
-                        let o = p as! Dictionary<String, Float>
-                        print(type(of: p))
-                        print(o["x"])
-                        print(o["y"])
-                    }
-                }
-            }
-            
+    @IBAction func TapPreviousPage(_ sender: Any) {
+        if PageNum != 0{
+            PageNum -= 1
+            Page.text = "page" + String(PageNum)
+            viewDidLoad()
         }
+    }
+    
+    @IBAction func TapNextPage(_ sender: Any) {
+        PageNum += 1
+        Page.text = "page" + String(PageNum)
+        viewDidLoad()
     }
 }
 
