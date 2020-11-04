@@ -18,8 +18,8 @@ class AllBoard: UIViewController {
     @IBOutlet weak var content: UITextField!
     
     var boarddb:BoardDB?
-    // 投稿インスタンス
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var whichBoard: Int = 1
     
     
     override func viewDidLoad() {
@@ -36,6 +36,7 @@ class AllBoard: UIViewController {
     
     //　ドラッグ時に呼ばれる
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         // タッチイベントを取得
         let touchEvent = touches.first!
 
@@ -48,7 +49,7 @@ class AllBoard: UIViewController {
         let newDy = touchEvent.location(in: self.view).y
 
         
-        boarddb!.moveBoard(preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy)
+        boarddb!.moveBoard(preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy, whichBoard: self.whichBoard)
     }
  
     override func didReceiveMemoryWarning() {
@@ -80,9 +81,30 @@ class AllBoard: UIViewController {
         }
     }
     
-//    @IBAction func TapBoard(_ sender: Any){
-//
-//    }
+    func deleteBorad() -> Void {
+        print("Delete: \(self.whichBoard)")
+        self.boarddb?.deleteBoard(whichBoard: self.whichBoard)
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -14,7 +14,7 @@ class Board: UIView {
     @IBOutlet weak var UserName: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var title: UILabel!
-    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+ 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,11 +36,23 @@ class Board: UIView {
         
         }
 
-//    @IBAction func TapBoard(_ sender: Any) {
-//
-//        appDelegate.whichBoard = self.tag
-//    }
     @IBAction func TapBoard(_ sender: Any) {
-        appDelegate.whichBoard = self.tag
+        if let parentV = self.parentViewController() as? AllBoard{
+            parentV.whichBoard = self.tag
+            print(parentV.whichBoard)
+        }else if let parentV = self.parentViewController() as? StudentBoard{
+            parentV.whichBoard = self.tag
+            print(parentV.whichBoard)
+        }
+    }
+    @IBAction func TapDelete(_ sender: Any) {
+        if let parentV = self.parentViewController() as? AllBoard{
+            parentV.whichBoard = self.tag
+            parentV.deleteBorad()
+        }else if let parentV = self.parentViewController() as? StudentBoard{
+            parentV.whichBoard = self.tag
+            parentV.deleteBorad()
+        }
     }
 }
+

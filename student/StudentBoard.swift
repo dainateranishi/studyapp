@@ -27,7 +27,8 @@ class StudentBoard: UIViewController {
     @IBOutlet weak var content: UITextField!
     
     var boarddb:BoardDB?
-    // 投稿インスタンス
+    var whichBoard = 1
+    
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
@@ -57,7 +58,7 @@ class StudentBoard: UIViewController {
         let newDy = touchEvent.location(in: self.view).y
 
         
-        boarddb!.moveBoard(preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy)
+        boarddb!.moveBoard(preDx: preDx, preDy: preDy, newDx: newDx, newDy: newDy, whichBoard: self.whichBoard)
     }
  
     override func didReceiveMemoryWarning() {
@@ -84,15 +85,21 @@ class StudentBoard: UIViewController {
             content.text = ""
             Title_area.text = ""
     
-            
-            
             boarddb!.writeDB(name: self.appDelegate.UserName!, title: title, content: con, width:250, height:250)
-            
-            
         }
-        
-
     }
+    
+    func deleteBorad() -> Void {
+        print("Delete: \(self.whichBoard)")
+        self.boarddb?.deleteBoard(whichBoard: self.whichBoard)
+    }
+
+    
+    
+    
+    
+    
+    
     
     
     

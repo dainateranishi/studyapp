@@ -11,7 +11,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var whichBoard:Int?
     var whichClass: String?
     var UserName: String?
     
