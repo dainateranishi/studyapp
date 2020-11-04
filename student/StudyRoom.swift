@@ -2,64 +2,56 @@
 //  StudyRoom.swift
 //  student
 //
-//  Created by 寺西帝乃 on 2020/10/30.
+//  Created by 寺西帝乃 on 2020/11/04.
 //
 
-//import Foundation
+import Foundation
 import UIKit
-import Firebase
 
 class StudyRoom: UIViewController {
-    @IBOutlet weak var drawView: DrawView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var Page: UILabel!
-    var PageNum = 0
-    let Note = "note1"
-    let db = Firestore.firestore()
+    
+    @IBOutlet weak var roomName: UILabel!
     
     override func viewDidLoad() {
-        Page.text = "page" + String(PageNum)
         super.viewDidLoad()
-        segmentedControl.selectedSegmentIndex = 0
-        Page.text = "page" + String(PageNum)
-        drawView.readyDB(note: Note, page: Page.text!)
-        // Do any additional setup after loading the view.
-    }
 
-    @IBAction func clearTapped(_ sender: Any) {
-        drawView.clear()
     }
     
-    @IBAction func undoTapped(_ sender: Any) {
-        drawView.undo()
-    }
-    
-    @IBAction func colorChange(_ sender: Any) {
-                var c = UIColor.black
-                switch segmentedControl.selectedSegmentIndex {
-                case 1:
-                    c = UIColor.blue
-                    break
-                case 2:
-                    c = UIColor.red
-                    break
-                default:
-                    break
-                    }
-                drawView.setDrawingColor(color: c)
-    }
-    @IBAction func TapPreviousPage(_ sender: Any) {
-        if PageNum != 0{
-            PageNum -= 1
-            Page.text = "page" + String(PageNum)
-            viewDidLoad()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let next = segue.destination as? Note
+        // segueのIDを確認して特定のsegueのときのみ動作させる
+        if segue.identifier == "isJapanese" {
+            next?.Note = "Japanese"
+        }else if segue.identifier == "isMath" {
+            next?.Note = "Math"
+        }else if segue.identifier == "isEnglish" {
+            next?.Note = "English"
+        }else if segue.identifier == "isScience" {
+            next?.Note = "Science"
+        }else if segue.identifier == "isSocial" {
+            next?.Note = "Social"
         }
     }
     
-    @IBAction func TapNextPage(_ sender: Any) {
-        PageNum += 1
-        Page.text = "page" + String(PageNum)
-        viewDidLoad()
+    @IBAction func TapJapanese(_ sender: Any) {
+        performSegue(withIdentifier: "isJapanese", sender: nil)
     }
+    
+    @IBAction func TapMath(_ sender: Any) {
+        performSegue(withIdentifier: "isMath", sender: nil)
+    }
+    
+    @IBAction func TapEnglish(_ sender: Any) {
+        performSegue(withIdentifier: "isEnglish", sender: nil)
+    }
+    
+    @IBAction func TapScience(_ sender: Any) {
+        performSegue(withIdentifier: "isScience", sender: nil)
+    }
+    
+    @IBAction func TapSocial(_ sender: Any) {
+        performSegue(withIdentifier: "isSocial", sender: nil)
+    }
+    
 }
-

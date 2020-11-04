@@ -32,7 +32,6 @@ class Board: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "Board" , bundle: bundle)
         guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-        view.backgroundColor = UIColor.init(red: 230/255, green: 255/255, blue: 230/255, alpha: 90/100)
         addSubview(view)
         
         }

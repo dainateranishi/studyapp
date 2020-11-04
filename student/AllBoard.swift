@@ -74,16 +74,15 @@ class AllBoard: UIViewController {
             }
             content.text = ""
             Title_area.text = ""
-    
-            
             
             boarddb!.writeDB(name: self.appDelegate.UserName!, title: title, content: con, width:250, height:250)
             
-            
         }
-        
-
     }
+    
+//    @IBAction func TapBoard(_ sender: Any){
+//
+//    }
     
     
     
