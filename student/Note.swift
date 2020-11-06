@@ -14,6 +14,7 @@ class Note: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var Page: UILabel!
     @IBOutlet weak var subjuct: UILabel!
+    @IBOutlet weak var ShareWindow: ShareDrawView!
     var PageNum = 0
     var Note: String?
     let db = Firestore.firestore()
@@ -26,6 +27,7 @@ class Note: UIViewController {
         Page.text = "page" + String(PageNum)
         Page.text = "page" + String(PageNum)
         drawView.readyDB(note: Note!, page: Page.text!)
+        ShareWindow.readyDB(note: Note!, page: Page.text!)
         // Do any additional setup after loading the view.
     }
 

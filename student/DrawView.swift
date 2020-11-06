@@ -111,6 +111,7 @@ class DrawView: UIView {
         currentDrawing = Drawing()
         currentDrawing?.color = currentColor
         currentDrawing?.points.append(location)
+        print(location)
         setNeedsDisplay()
     }
     
@@ -120,6 +121,7 @@ class DrawView: UIView {
         let location = touch.location(in: self)
                 
         currentDrawing?.points.append(location)
+        print(location)
         
         setNeedsDisplay()
     }
@@ -133,7 +135,6 @@ class DrawView: UIView {
             print(finishedDrawings)
             let docID = "draw" + String(finishedDrawings.count)
             drawing.points.append(location)
-//            finishedDrawings.append((docID, drawing))
             writeDB(docID: docID, draw: drawing)
         }
         currentDrawing = nil

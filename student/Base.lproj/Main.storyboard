@@ -761,12 +761,18 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-ZC-wtQ" customClass="ShareDrawView" customModule="student" customModuleProvider="target">
+                                <rect key="frame" x="20" y="338" width="269" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ci4-rT-f3K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="Page" destination="1W7-oV-2KJ" id="6an-Jp-qVM"/>
+                        <outlet property="ShareWindow" destination="NSy-ZC-wtQ" id="6dc-ga-ANa"/>
                         <outlet property="drawView" destination="mNN-lk-aON" id="7dg-Q4-VIg"/>
                         <outlet property="segmentedControl" destination="ZT2-Hn-vIA" id="MKH-W9-pp6"/>
                         <outlet property="subjuct" destination="Pxm-wD-EdK" id="FSQ-Fs-Pub"/>
@@ -964,7 +970,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="X5C-vO-QNy"/>
+        <segue reference="Rrk-8w-o9z"/>
         <segue reference="qcB-eI-N36"/>
         <segue reference="NMd-76-otM"/>
     </inferredMetricsTieBreakers>

@@ -32,6 +32,7 @@
 		17FE9EE825526EB7006C8BB6 /* ReplyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FE9EE725526EB7006C8BB6 /* ReplyBoard.swift */; };
 		17FE9EFB2554C060006C8BB6 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FE9EF92554C060006C8BB6 /* CommentTableViewCell.swift */; };
 		17FE9EFC2554C060006C8BB6 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FE9EFA2554C060006C8BB6 /* CommentTableViewCell.xib */; };
+		17FE9F0F2554F273006C8BB6 /* ShareDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FE9F0E2554F273006C8BB6 /* ShareDrawView.swift */; };
 		823B1AED93EBB50CFD2CF705 /* Pods_student_studentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5080AB33B3CC2E3E9B1FC51 /* Pods_student_studentUITests.framework */; };
 		AA0F789A67B6B297D572819B /* Pods_student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6FCE73AEEAB87F444C7A45 /* Pods_student.framework */; };
 		AB75A3448DC0FA6B890600EC /* Pods_studentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C5A49AE2E8AB9023605A97 /* Pods_studentTests.framework */; };
@@ -87,6 +88,7 @@
 		17FE9EE725526EB7006C8BB6 /* ReplyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyBoard.swift; sourceTree = "<group>"; };
 		17FE9EF92554C060006C8BB6 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		17FE9EFA2554C060006C8BB6 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		17FE9F0E2554F273006C8BB6 /* ShareDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDrawView.swift; sourceTree = "<group>"; };
 		3570099EAE9663A96DC5F86D /* Pods-student-studentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-student-studentUITests.debug.xcconfig"; path = "Target Support Files/Pods-student-studentUITests/Pods-student-studentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		621931E38A536AF7A33400BD /* Pods-student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-student.debug.xcconfig"; path = "Target Support Files/Pods-student/Pods-student.debug.xcconfig"; sourceTree = "<group>"; };
 		6F6FCE73AEEAB87F444C7A45 /* Pods_student.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_student.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +157,7 @@
 				17E693E52549B3BC00E0597E /* SceneDelegate.swift */,
 				17E693E72549B3BC00E0597E /* ViewController.swift */,
 				17E693E92549B3BC00E0597E /* Main.storyboard */,
+				17FE9F0E2554F273006C8BB6 /* ShareDrawView.swift */,
 				17FE9EE725526EB7006C8BB6 /* ReplyBoard.swift */,
 				17FE9EE225526449006C8BB6 /* UIvieExtention.swift */,
 				17FE9EDD2551B24A006C8BB6 /* StudyRoom.swift */,
@@ -468,6 +471,7 @@
 				17E693E82549B3BC00E0597E /* ViewController.swift in Sources */,
 				17FE9EDE2551B24A006C8BB6 /* StudyRoom.swift in Sources */,
 				17E693E42549B3BC00E0597E /* AppDelegate.swift in Sources */,
+				17FE9F0F2554F273006C8BB6 /* ShareDrawView.swift in Sources */,
 				17FE9DE6254B8892006C8BB6 /* MyRoom.swift in Sources */,
 				17FE9DEB254B8BB9006C8BB6 /* AllBoard.swift in Sources */,
 				17FE9ED6255002C8006C8BB6 /* Drawing.swift in Sources */,
