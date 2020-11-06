@@ -13,6 +13,7 @@ class Note: UIViewController {
     @IBOutlet weak var drawView: DrawView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var Page: UILabel!
+    @IBOutlet weak var subjuct: UILabel!
     var PageNum = 0
     var Note: String?
     let db = Firestore.firestore()
@@ -20,6 +21,7 @@ class Note: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjuct.text = self.Note
         segmentedControl.selectedSegmentIndex = 0
         Page.text = "page" + String(PageNum)
         Page.text = "page" + String(PageNum)

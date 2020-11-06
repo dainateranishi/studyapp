@@ -14,15 +14,18 @@ class Board: UIView {
     @IBOutlet weak var UserName: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var title: UILabel!
+//    var storyboard: UIStoryboard?
  
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+//        storyboard = self.storyboard!
         configure()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+//        storyboard = self.storyboard!
         configure()
     }
 
@@ -45,6 +48,13 @@ class Board: UIView {
             print(parentV.whichBoard)
         }
     }
+    @IBAction func TapReply(_ sender: Any) {
+        if let parentV = self.parentViewController() as? AllBoard{
+            parentV.Reply(UserName: UserName.text!, Content: content.text!, Title: title.text!)
+        }
+    }
+    
+    
     @IBAction func TapDelete(_ sender: Any) {
         if let parentV = self.parentViewController() as? AllBoard{
             parentV.whichBoard = self.tag

@@ -55,6 +55,9 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                     <state key="normal" title="reply"/>
+                    <connections>
+                        <action selector="TapReply:" destination="-1" eventType="touchUpInside" id="NAM-6Y-mMt"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="kzI-hV-Sl0"/>
