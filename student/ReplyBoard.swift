@@ -86,13 +86,6 @@ class ReplyBoard: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return cellHeigh
         }
     @IBAction func TapAddComment(_ sender: Any) {
-//        var comment = Comment()
-//        comment.UserName = appDelegate.UserName!
-//        comment.Content = CommentArea.text!
-//
-//        CommentList.append(comment)
-//
-//        CommentTable.reloadData()
         
         var ref: DocumentReference? = nil
         ref = self.db.collection("class").document(self.className!).collection(self.boardName!).document(self.docID!).collection("Comment").addDocument(data: [
@@ -103,6 +96,7 @@ class ReplyBoard: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(ref!.documentID)")
+                self.CommentArea.text = ""
                 
             }
             
