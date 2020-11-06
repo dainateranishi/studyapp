@@ -88,18 +88,19 @@ class SignupViewController: UIViewController {
                             return
                         }
                         SVProgressHUD.showSuccess(withStatus: "Success!")
-                        self.performSegue(withIdentifier: "fromSignup", sender: nil)
                         let dt = Date()
                         let dateFormatter = DateFormatter()// DateFormatter を使用して書式とロケールを指定する
                         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
                         print("Log In : \(dateFormatter.string(from: dt))")
                         
-                        self.db.collection("class").document(className).collection(username).document("help").setData(["created at": dateFormatter.string(from: dt)])
+                        self.db.collection("class").document(className).collection(username).document("help").setData(["LogIn": dateFormatter.string(from: dt)])
+                        
                         
                         self.appDelegate.whichClass = className
                         self.appDelegate.UserName = user.displayName
                         print(self.appDelegate.whichClass!)
                         print(self.appDelegate.UserName!)
+                        self.performSegue(withIdentifier: "fromSignup", sender: nil)
                         
                     }
                 } else {

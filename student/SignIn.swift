@@ -60,7 +60,8 @@ class SigninViewController: UIViewController {
                     print(email)
                     print(password)
                     SVProgressHUD.showSuccess(withStatus: "Success!")
-                    self.performSegue(withIdentifier: "fromLogin", sender: nil)
+//                    self.performSegue(withIdentifier: "fromLogin", sender: nil)
+                    self.appDelegate.whichClass = className
                     let user = Auth.auth().currentUser
                     if let user = user{
                         self.appDelegate.whichClass = className
@@ -68,6 +69,8 @@ class SigninViewController: UIViewController {
                         print(user.email)
                         print(self.appDelegate.whichClass!)
                         print(self.appDelegate.UserName!)
+                        self.performSegue(withIdentifier: "fromLogin", sender: nil)
+                        
                         }
                     }
                 }
