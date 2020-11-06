@@ -50,7 +50,7 @@ class Board: UIView {
     }
     @IBAction func TapReply(_ sender: Any) {
         if let parentV = self.parentViewController() as? AllBoard{
-            parentV.Reply(UserName: UserName.text!, Content: content.text!, Title: title.text!)
+            parentV.Reply(UserName: UserName.text!, Content: content.text!, Title: title.text!, boardTag: self.tag)
         }
     }
     

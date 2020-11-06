@@ -93,6 +93,18 @@ class StudentBoard: UIViewController {
         print("Delete: \(self.whichBoard)")
         self.boarddb?.deleteBoard(whichBoard: self.whichBoard)
     }
+    
+    func Reply(UserName: String, Content: String, Title: String, boardTag: Int) -> Void {
+        
+        let replyboard = self.storyboard?.instantiateViewController(withIdentifier: "ReplyBoard") as! ReplyBoard
+        print(Content)
+        print(UserName)
+        replyboard.Content = Content
+        replyboard.UserName = UserName
+        replyboard.docID = boarddb?.boards[boardTag].0
+        replyboard.boardName = "studentboard"
+        self.present(replyboard, animated: true, completion: nil)
+    }
 
     
     
