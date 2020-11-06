@@ -26,8 +26,8 @@ class Note: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         Page.text = "page" + String(PageNum)
         Page.text = "page" + String(PageNum)
-        drawView.readyDB(note: Note!, page: Page.text!)
         ShareWindow.readyDB(note: Note!, page: Page.text!)
+        drawView.readyDB(note: Note!, page: Page.text!, ShareWindow: ShareWindow)
         // Do any additional setup after loading the view.
     }
 

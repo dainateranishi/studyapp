@@ -22,6 +22,9 @@ class ShareDrawView: UIView {
     var ShareLeft = CGFloat(0)
     var ShareBottom: CGFloat?
     var ShareRight: CGFloat?
+    var overX = CGFloat(0)
+    var overY = CGFloat(0)
+    
     
 
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -42,7 +45,7 @@ class ShareDrawView: UIView {
         print(self.UserName)
         print(self.className)
         
-        self.db.collection("class").document(self.className).collection("student1").document(self.Note).collection(self.Page).addSnapshotListener({ [self]querySnapshot, err in
+        self.db.collection("class").document(self.className).collection("student1").document(self.Note).collection(self.Page).document("share").collection("share").addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(err!)")
                 return
@@ -64,21 +67,14 @@ class ShareDrawView: UIView {
                         var points = [CGPoint]()
                         for po in point as! Array<Any>{
                             let p = po as! Dictionary<String, CGFloat>
-                        
-                            let drawX = p["x"]! - ShareLeft
-                            let drawY = p["y"]! - ShareTop
-                        
-                            if drawX >= 0, drawX <= ShareRight!, drawY >= 0, drawY <= ShareBottom!{
-                                points.append(CGPoint(x: drawX, y: drawY))
-                            }
+                            points.append(CGPoint(x: p["x"]!, y: p["y"]!))
                         }
-                        if points.count > 0{
-                            print("Points: \(points.count)")
-                            var drawing = Drawing()
-                            drawing.color = col
-                            drawing.points = points
-                            self.finishedDrawings.append((diff.document.documentID, drawing))
-                        }
+                        print("Points: \(points.count)")
+                        var drawing = Drawing()
+                        drawing.color = col
+                        drawing.points = points
+                        self.finishedDrawings.append((diff.document.documentID, drawing))
+                        
                         print("finishDraw: \(self.finishedDrawings.count)")
                         setNeedsDisplay()
                     }
@@ -95,6 +91,39 @@ class ShareDrawView: UIView {
                             setNeedsDisplay()
                             break
                         }
+                    }
+                }
+                if(diff.type == .modified){
+                    if let color = diff.document.get("color"),
+                       let point = diff.document.get("point"){
+                        print("modified")
+                        var col = UIColor.black
+                        if color as! String == "blue"{
+                            col = UIColor.blue
+                        }else if color as! String == "red"{
+                            col = UIColor.red
+                        }
+                        
+                        var points = [CGPoint]()
+                        for po in point as! Array<Any>{
+                            let p = po as! Dictionary<String, CGFloat>
+                            points.append(CGPoint(x: p["x"]!, y: p["y"]!))
+                        }
+                        print("Points: \(points.count)")
+                        var drawing = Drawing()
+                        drawing.color = col
+                        drawing.points = points
+                        
+                        for i in 0...self.finishedDrawings.count-1{
+                            if diff.document.documentID == self.finishedDrawings[i].0 {
+                                self.finishedDrawings[i].1 = drawing
+                                setNeedsDisplay()
+                                break
+                            }
+                        }
+                        
+                        
+                        
                     }
                 }
             }
