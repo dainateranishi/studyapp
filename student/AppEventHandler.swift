@@ -58,7 +58,7 @@ class AppEventHandler: NSObject {
                 if let document = document{
                     var ClassMate = document.get("member") as! [String : String]
                     print(document.get("member") as! [String : String])
-                    ClassMate[UserName] = "lalalala"
+                    ClassMate[UserName] = nowTimeString()
 
                     ref.updateData([
                         "member": ClassMate

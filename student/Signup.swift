@@ -88,12 +88,8 @@ class SignupViewController: UIViewController {
                             return
                         }
                         SVProgressHUD.showSuccess(withStatus: "Success!")
-                        let dt = Date()
-                        let dateFormatter = DateFormatter()// DateFormatter を使用して書式とロケールを指定する
-                        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
-                        print("Log In : \(dateFormatter.string(from: dt))")
                         
-                        self.db.collection("class").document(className).collection(username).document("help").setData(["LogIn": dateFormatter.string(from: dt)])
+                        self.db.collection("class").document(className).collection(username).document("help").setData(["LogIn": nowTimeString()])
                         
                         
                         self.appDelegate.whichClass = className
@@ -105,7 +101,7 @@ class SignupViewController: UIViewController {
                             if let document = document{
                                 var ClassMate = document.get("member") as! [String : String]
                                 print(document.get("member") as! [String : String])
-                                ClassMate[user.displayName!] = "lalalala"
+                                ClassMate[user.displayName!] = nowTimeString()
                                 
                                 ref.updateData([
                                     "member": ClassMate

@@ -48,7 +48,6 @@ class ViewController: UIViewController {
     //NSTimerを利用して60分の1秒ごとに呼びたす。
     @objc func update() {
         nowTime()
-        
     }
     
     func nowTime(){

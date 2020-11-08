@@ -74,7 +74,7 @@ class SigninViewController: UIViewController {
                             if let document = document{
                                 var ClassMate = document.get("member") as! [String : String]
                                 print(document.get("member") as! [String : String])
-                                ClassMate[user.displayName!] = "lalalala"
+                                ClassMate[user.displayName!] = nowTimeString()
                                 
                                 ref.updateData([
                                     "member": ClassMate

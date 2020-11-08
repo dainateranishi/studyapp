@@ -720,7 +720,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNN-lk-aON" customClass="DrawView" customModule="student" customModuleProvider="target">
-                                <rect key="frame" x="297" y="303" width="447" height="650"/>
+                                <rect key="frame" x="297" y="227" width="447" height="726"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                             </view>
@@ -991,7 +991,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Rrk-8w-o9z"/>
-        <segue reference="mcz-rz-PKv"/>
+        <segue reference="qcB-eI-N36"/>
         <segue reference="n3E-UR-8dT"/>
     </inferredMetricsTieBreakers>
     <resources>
