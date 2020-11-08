@@ -98,8 +98,27 @@ class SignupViewController: UIViewController {
                         
                         self.appDelegate.whichClass = className
                         self.appDelegate.UserName = user.displayName
-                        print(self.appDelegate.whichClass!)
-                        print(self.appDelegate.UserName!)
+                        
+                        let ref = self.db.collection("class").document(className)
+                        
+                        ref.getDocument{(document, err) in
+                            if let document = document{
+                                var ClassMate = document.get("member") as! [String : String]
+                                print(document.get("member") as! [String : String])
+                                ClassMate[user.displayName!] = "lalalala"
+                                
+                                ref.updateData([
+                                    "member": ClassMate
+                                ]){ err in
+                                    if let err = err {
+                                        print("Error updating document: \(err)")
+                                    } else {
+                                        print("Document successfully updated")
+                                    }
+                                }
+                            }
+                        }
+                        
                         self.performSegue(withIdentifier: "fromSignup", sender: nil)
                         
                     }

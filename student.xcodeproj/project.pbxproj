@@ -15,6 +15,7 @@
 		17E693F02549B3BF00E0597E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E693EE2549B3BF00E0597E /* LaunchScreen.storyboard */; };
 		17E693FB2549B3BF00E0597E /* studentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693FA2549B3BF00E0597E /* studentTests.swift */; };
 		17E694062549B3BF00E0597E /* studentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E694052549B3BF00E0597E /* studentUITests.swift */; };
+		17F521E72557E89D00563997 /* AppEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F521E62557E89D00563997 /* AppEventHandler.swift */; };
 		17FE9DE6254B8892006C8BB6 /* MyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FE9DE5254B8892006C8BB6 /* MyRoom.swift */; };
 		17FE9DEB254B8BB9006C8BB6 /* AllBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FE9DEA254B8BB9006C8BB6 /* AllBoard.swift */; };
 		17FE9DF0254B8C86006C8BB6 /* StudentBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FE9DEF254B8C86006C8BB6 /* StudentBoard.swift */; };
@@ -71,6 +72,7 @@
 		17E694012549B3BF00E0597E /* studentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = studentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E694052549B3BF00E0597E /* studentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentUITests.swift; sourceTree = "<group>"; };
 		17E694072549B3BF00E0597E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17F521E62557E89D00563997 /* AppEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventHandler.swift; sourceTree = "<group>"; };
 		17FE9DE5254B8892006C8BB6 /* MyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoom.swift; sourceTree = "<group>"; };
 		17FE9DEA254B8BB9006C8BB6 /* AllBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBoard.swift; sourceTree = "<group>"; };
 		17FE9DEF254B8C86006C8BB6 /* StudentBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBoard.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				17FE9DFC254B9590006C8BB6 /* GoogleService-Info.plist */,
 				17E693E32549B3BC00E0597E /* AppDelegate.swift */,
+				17F521E62557E89D00563997 /* AppEventHandler.swift */,
 				17E693E52549B3BC00E0597E /* SceneDelegate.swift */,
 				17E693E72549B3BC00E0597E /* ViewController.swift */,
 				17E693E92549B3BC00E0597E /* Main.storyboard */,
@@ -464,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17FE9DF0254B8C86006C8BB6 /* StudentBoard.swift in Sources */,
+				17F521E72557E89D00563997 /* AppEventHandler.swift in Sources */,
 				17FE9E48254BACF5006C8BB6 /* SignIn.swift in Sources */,
 				17FE9ED125500295006C8BB6 /* DrawView.swift in Sources */,
 				17FE9E77254E786A006C8BB6 /* BoardDB.swift in Sources */,

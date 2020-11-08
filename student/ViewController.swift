@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var Monthlabel: UILabel!
     @IBOutlet weak var Daylabel: UILabel!
     @IBOutlet weak var TimeLabel: UILabel!
-    
+    @IBOutlet weak var LoginMember: UILabel!
     
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let db = Firestore.firestore()
@@ -25,12 +25,30 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         nowTime()
         Timer.scheduledTimer(timeInterval: 1/60, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+        
+        self.db.collection("class").document(self.appDelegate.whichClass!).addSnapshotListener{documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data:[String: String] = document.get("member") as? [String : String] else {
+              print("Document data was empty.")
+              return
+            }
+            
+            for name in data.keys{
+                if  name != "studentName" {
+                    self.LoginMember.text! += name
+                }
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
     //NSTimerを利用して60分の1秒ごとに呼びたす。
     @objc func update() {
         nowTime()
+        
     }
     
     func nowTime(){

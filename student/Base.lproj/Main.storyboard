@@ -251,19 +251,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-Wg-Jgb">
+                                <rect key="frame" x="30" y="237" width="189" height="329"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="Daylabel" destination="QGc-ua-f4g" id="eeK-S7-u24"/>
+                        <outlet property="LoginMember" destination="d7m-Wg-Jgb" id="hbF-TN-ZP0"/>
                         <outlet property="Monthlabel" destination="fRz-Nf-vka" id="JJ0-GH-i7R"/>
                         <outlet property="TimeLabel" destination="J0W-ge-1a1" id="Ksk-8b-a2n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="529.62962962962956" y="118.88888888888889"/>
+            <point key="canvasLocation" x="273.33333333333331" y="205.55555555555554"/>
         </scene>
         <!--All Board-->
         <scene sceneID="1nm-7q-MQy">
