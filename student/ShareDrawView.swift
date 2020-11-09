@@ -18,129 +18,130 @@ class ShareDrawView: UIView {
     var Page = ""
     var className = ""
     var UserName = ""
-    var ShareTop = CGFloat(0)
-    var ShareLeft = CGFloat(0)
-    var ShareBottom: CGFloat?
-    var ShareRight: CGFloat?
-    var overX = CGFloat(0)
-    var overY = CGFloat(0)
+    var sharewindow: sharingWindow?
+    
     
     
 
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
-    func readyDB(note: String, page: String) -> Void {
+    func readyDB(note: String, Username: String, ShareWindow: sharingWindow) -> Void {
         self.finishedDrawings = []
         self.currentColor = UIColor.black
         self.Note = note
-        self.Page = page
         self.className = self.appDelegate.whichClass!
-        self.UserName = self.appDelegate.UserName!
-        self.ShareBottom = self.frame.height
-        self.ShareRight = self.frame.width
+        self.UserName = Username
+        self.sharewindow = ShareWindow
         
-        print(self.Note)
-        print(self.Page)
-        print(self.UserName)
-        print(self.className)
-        
-        self.db.collection("class").document(self.className).collection("student1").document(self.Note).collection(self.Page).document("share").collection("share").addSnapshotListener({ [self]querySnapshot, err in
+        self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection("Share").addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(err!)")
                 return
             }
             snapshot.documentChanges.forEach{diff in
-                if (diff.type == .added) {
-                    print("New draw: \(diff.document.data())")
-                    print("New draw: \(diff.document.data())")
-                    if let color = diff.document.get("color"),
-                       let point = diff.document.get("point"){
-                        print("ok")
-                        var col = UIColor.black
-                        if color as! String == "blue"{
-                            col = UIColor.blue
-                        }else if color as! String == "red"{
-                            col = UIColor.red
+                
+                if diff.document.documentID == "page"{
+                    print("page chaged")
+                    self.finishedDrawings = []
+                    setNeedsDisplay()
+                    self.Page = diff.document.get("page") as! String
+                    getShareFrame()
+                    self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).addSnapshotListener({ [self]querySnapshot, err in
+                        guard let snapshot = querySnapshot else {
+                            print("Error fetching snapshots: \(err!)")
+                            return
                         }
-                        
-                        var points = [CGPoint]()
-                        for po in point as! Array<Any>{
-                            let p = po as! Dictionary<String, CGFloat>
-                            points.append(CGPoint(x: p["x"]!, y: p["y"]!))
+                        snapshot.documentChanges.forEach{diff in
+                            if (diff.type == .added) {
+                                if let color = diff.document.get("color"),
+                                   let point = diff.document.get("point"){
+                                    
+                                    var col = UIColor.black
+                                    if color as! String == "blue"{
+                                        col = UIColor.blue
+                                    }else if color as! String == "red"{
+                                        col = UIColor.red
+                                    }
+                                    
+                                    var points = [CGPoint]()
+                                    for po in point as! Array<Any>{
+                                        let p = po as! Dictionary<String, CGFloat>
+                                        points.append(CGPoint(x: p["x"]!, y: p["y"]!))
+                                    }
+                                    var drawing = Drawing()
+                                    drawing.color = col
+                                    drawing.points = points
+                                    
+                                    self.finishedDrawings.append((diff.document.documentID, drawing))
+                                    setNeedsDisplay()
+                                    
+                                }
+                            }
+                            if (diff.type == .modified) {
+                                print("Modified Board: \(diff.document.data())")
+                            }
+                            if (diff.type == .removed) {
+                                let docID = diff.document.documentID
+                                for i in 0...self.finishedDrawings.count{
+                                    if docID == self.finishedDrawings[i].0 {
+                                        self.finishedDrawings.remove(at: i)
+                                        setNeedsDisplay()
+                                        break
+                                    }
+                                }
+                            }
                         }
-                        print("Points: \(points.count)")
-                        var drawing = Drawing()
-                        drawing.color = col
-                        drawing.points = points
-                        self.finishedDrawings.append((diff.document.documentID, drawing))
-                        
-                        print("finishDraw: \(self.finishedDrawings.count)")
-                        setNeedsDisplay()
-                    }
+                    })
                 }
-                if (diff.type == .removed) {
-                    print("Removed")
-                    let docID = diff.document.documentID
-
-                    for i in 0...self.finishedDrawings.count-1{
-                        print("finishDraw delete: \(self.finishedDrawings.count)")
-                        print(i)
-                        if docID == self.finishedDrawings[i].0 {
-                            self.finishedDrawings.remove(at: i)
-                            setNeedsDisplay()
-                            break
-                        }
+            }
+        })
+    }
+    
+    func getShareFrame() -> Void {
+        self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection("Share").addSnapshotListener({ [self]querySnapshot, err in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(err!)")
+                return
+            }
+            snapshot.documentChanges.forEach{diff in
+                if(diff.type == .added){
+                    if diff.document.documentID == "frameX" {
+                        self.sharewindow!.ShareLeft = diff.document.get("frameLeft") as! CGFloat
+                        self.sharewindow!.ShareRight = diff.document.get("frameRight") as? CGFloat
+                    }
+                    if diff.document.documentID == "frameY" {
+                        self.sharewindow!.ShareTop = diff.document.get("frameTop") as! CGFloat
+                        self.sharewindow!.ShareBottom = diff.document.get("frameBottom") as? CGFloat
                     }
                 }
                 if(diff.type == .modified){
-                    if let color = diff.document.get("color"),
-                       let point = diff.document.get("point"){
-                        print("modified")
-                        var col = UIColor.black
-                        if color as! String == "blue"{
-                            col = UIColor.blue
-                        }else if color as! String == "red"{
-                            col = UIColor.red
-                        }
-                        
-                        var points = [CGPoint]()
-                        for po in point as! Array<Any>{
-                            let p = po as! Dictionary<String, CGFloat>
-                            points.append(CGPoint(x: p["x"]!, y: p["y"]!))
-                        }
-                        print("Points: \(points.count)")
-                        var drawing = Drawing()
-                        drawing.color = col
-                        drawing.points = points
-                        
-                        for i in 0...self.finishedDrawings.count-1{
-                            if diff.document.documentID == self.finishedDrawings[i].0 {
-                                self.finishedDrawings[i].1 = drawing
-                                setNeedsDisplay()
-                                break
-                            }
-                        }
-                        
-                        
-                        
+                    if diff.document.documentID == "frameX" {
+                        self.sharewindow!.ShareLeft = diff.document.get("frameLeft") as! CGFloat
+                        self.sharewindow!.ShareRight = diff.document.get("frameRight") as? CGFloat
+                    }
+                    if diff.document.documentID == "frameY" {
+                        self.sharewindow!.ShareTop = diff.document.get("frameTop") as! CGFloat
+                        self.sharewindow!.ShareBottom = diff.document.get("frameBottom") as? CGFloat
                     }
                 }
             }
         })
-        setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {
-        for (_, drawing) in finishedDrawings {
-            drawing.color.setStroke()
-            stroke(drawing: drawing)
+        for (_, drawing) in self.finishedDrawings {
+            
+            var frameDraw = Drawing()
+            frameDraw.color = drawing.color
+            frameDraw.color.setStroke()
+            
+            for point in drawing.points{
+                let po = CGPoint(x: point.x - self.sharewindow!.ShareLeft, y: point.y - self.sharewindow!.ShareTop)
+                frameDraw.points.append(po)
+            }
+            stroke(drawing: frameDraw)
         }
-        
-//        if let drawing = currentDrawing {
-//            drawing.color.setStroke()
-//            stroke(drawing: drawing)
-//        }
     }
     
     

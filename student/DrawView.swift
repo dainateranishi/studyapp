@@ -12,6 +12,7 @@ import Firebase
 class DrawView: UIView {
     
     var currentDrawing: Drawing?
+    var sharewindow: sharingWindow?
     var finishedDrawings:[(String, Drawing)] = []
     var shareDrawings:[(String, Drawing)] = []
     var currentColor = UIColor.black
@@ -23,18 +24,15 @@ class DrawView: UIView {
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
-    func readyDB(note: String, page: String, ShareWindow: ShareDrawView) -> Void {
+    func readyDB(note: String, page: String, ShareWindow: sharingWindow) -> Void {
         self.finishedDrawings = []
         self.currentColor = UIColor.black
         self.Note = note
         self.Page = page
         self.className = self.appDelegate.whichClass!
         self.UserName = self.appDelegate.UserName!
+        self.sharewindow = ShareWindow
         
-        print(self.Note)
-        print(self.Page)
-        print(self.UserName)
-        print(self.className)
         
         self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
@@ -43,11 +41,8 @@ class DrawView: UIView {
             }
             snapshot.documentChanges.forEach{diff in
                 if (diff.type == .added) {
-                    print("New draw: \(diff.document.data())")
-                    print("is Modified: \(diff.document.metadata.hasPendingWrites ? "Local" : "Server")")
                     if let color = diff.document.get("color"),
                        let point = diff.document.get("point"){
-                        print("ok")
                         
                         var col = UIColor.black
                         if color as! String == "blue"{
@@ -60,30 +55,6 @@ class DrawView: UIView {
                         for po in point as! Array<Any>{
                             let p = po as! Dictionary<String, CGFloat>
                             points.append(CGPoint(x: p["x"]!, y: p["y"]!))
-                            
-                            
-                            let drawX = p["x"]! - ShareWindow.ShareLeft
-                            let drawY = p["y"]! - ShareWindow.ShareTop
-                                                    
-                            if drawX >= 0, drawX <= ShareWindow.ShareRight!, drawY >= 0, drawY <= ShareWindow.ShareBottom!{
-                                points.append(CGPoint(x: p["x"]!, y: p["y"]!))
-                            }else if drawX < 0{    //Shareviewより左の場合
-                                if ShareWindow.overX > drawX{
-                                    ShareWindow.overX = drawX
-                                }
-                            }else if drawX > ShareWindow.ShareRight!{ // ShareViewより右の場合
-                                if ShareWindow.overX < (ShareWindow.ShareRight! - ShareWindow.overX){
-                                    ShareWindow.overX = ShareWindow.ShareRight! - ShareWindow.overX
-                                }
-                            }else if drawY < 0{//ShareViewより上にある場合
-                                if ShareWindow.overY > drawY{
-                                    ShareWindow.overY = drawY
-                                }
-                            } else if drawY > ShareWindow.ShareBottom!{ // ShareViewより下の場合
-                                if ShareWindow.overY < (ShareWindow.ShareBottom! - ShareWindow.overY){
-                                    ShareWindow.overY = ShareWindow.ShareBottom! - ShareWindow.overY
-                                }
-                            }
                         }
                         
                         var drawing = Drawing()
@@ -91,9 +62,6 @@ class DrawView: UIView {
                         drawing.points = points
                         
                         self.finishedDrawings.append((diff.document.documentID, drawing))
-//                        self.shareDrawings.append((diff.document.documentID, drawing))
-                        
-                        moveShare(ShareWindow: ShareWindow)
                         
                         setNeedsDisplay()
                         
@@ -103,13 +71,10 @@ class DrawView: UIView {
                     print("Modified Board: \(diff.document.data())")
                 }
                 if (diff.type == .removed) {
-                    print("Removed")
                     let docID = diff.document.documentID
-
-                    for i in 0...self.finishedDrawings.count-1 {
+                    for i in 0...self.finishedDrawings.count{
                         if docID == self.finishedDrawings[i].0 {
                             self.finishedDrawings.remove(at: i)
-//                            self.shareDrawings.remove(at: i)
                             setNeedsDisplay()
                             break
                         }
@@ -120,59 +85,69 @@ class DrawView: UIView {
         setNeedsDisplay()
     }
     
-    func moveShare(ShareWindow: ShareDrawView) -> Void {
-        ShareWindow.ShareLeft += ShareWindow.overX
-        ShareWindow.ShareRight! += ShareWindow.overX
-        ShareWindow.ShareTop += ShareWindow.overY
-        ShareWindow.ShareBottom! += ShareWindow.overY
+    func moveShare(drawing: Drawing) -> Void {
         
-        ShareWindow.overX = CGFloat(0)
-        ShareWindow.overY = CGFloat(0)
-        
-        self.finishedDrawings.forEach{docID, drawings in
-            var sharePoints = [CGPoint]()
-            var color:String = "non_color"
-            if drawings.color == UIColor.black {
-                color = "black"
-            }else if drawings.color == UIColor.blue{
-                color = "blue"
-            }else if drawings.color == UIColor.red{
-                color = "red"
-            }
+        for point in drawing.points{
             
-            for point in drawings.points as Array<CGPoint>{
-                let p = point
-                let drawX = p.x - ShareWindow.ShareLeft
-                let drawY = p.y - ShareWindow.ShareTop
-                if drawX >= 0, drawX <= ShareWindow.ShareRight!, drawY >= 0, drawY <= ShareWindow.ShareBottom!{
-                    sharePoints.append(CGPoint(x: drawX, y: drawY))
+            let drawX = point.x - self.sharewindow!.ShareLeft
+            let drawY = point.y - self.sharewindow!.ShareTop
+            
+            if drawX < 0{    //Shareviewより左の場合
+                if self.sharewindow!.overX > drawX{
+                    self.sharewindow!.overX = drawX
                 }
             }
+            if drawX > self.sharewindow!.ShareRight!{ // ShareViewより右の場合
+                if self.sharewindow!.overX < (self.sharewindow!.ShareRight! - self.sharewindow!.overX){
+                    self.sharewindow!.overX = self.sharewindow!.ShareRight! - self.sharewindow!.overX
+                }
+            }
+            if drawY < 0{//ShareViewより上にある場合
+                if self.sharewindow!.overY > drawY{
+                    self.sharewindow!.overY = drawY
+                }
+            }
+            if drawY > self.sharewindow!.ShareBottom!{ // ShareViewより下の場合
+                if self.sharewindow!.overY < (self.sharewindow!.ShareBottom! - self.sharewindow!.overY){
+                    self.sharewindow!.overY = self.sharewindow!.ShareBottom! - self.sharewindow!.overY
+                }
+            }
+        }
+        
+        if self.sharewindow!.overX != 0 || self.sharewindow!.overY != 0{
+            self.sharewindow!.ShareLeft += self.sharewindow!.overX
+            self.sharewindow!.ShareRight! += self.sharewindow!.overX
+            self.sharewindow!.ShareTop += self.sharewindow!.overY
+            self.sharewindow!.ShareBottom! += self.sharewindow!.overY
             
-            if sharePoints.count == 0{
-                self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).document("share").collection("share").document(docID).delete(){err in
+            
+            if self.sharewindow!.overX != 0 {
+                db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection("Share").document("frameX").setData([
+                    "frameLeft": self.sharewindow!.ShareLeft,
+                    "frameRight": self.sharewindow!.ShareRight!
+                ]) { err in
                     if let err = err {
-                        print("Error removing document: \(err)")
+                        print("Error updating document: \(err)")
                     } else {
-                        print("Document successfully removed : \(docID)!")
-                    }
-                }
-            }else{
-                var point:Array<Dictionary<String, CGFloat>> = []
-                for po in sharePoints {
-                    point.append(["x":po.x, "y":po.y])
-                }
-                self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).document("share").collection("share").document(docID).setData([
-                    "color": color,
-                    "point": point
-                ]){err in
-                    if let err = err {
-                        print("Error adding document: \(err)")
-                    } else {
-                        print("Document added with ID: \(docID)")
+                        print("Document successfully updated")
                     }
                 }
             }
+            if self.sharewindow!.overY != 0 {
+                db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection("Share").document("frameY").setData([
+                    "frameTop": self.sharewindow!.ShareTop,
+                    "frameBottom": self.sharewindow!.ShareBottom!
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+            }
+            
+            self.sharewindow!.overX = CGFloat(0)
+            self.sharewindow!.overY = CGFloat(0)
         }
     }
     
@@ -197,7 +172,6 @@ class DrawView: UIView {
         currentDrawing = Drawing()
         currentDrawing?.color = currentColor
         currentDrawing?.points.append(location)
-        print(location)
         setNeedsDisplay()
     }
     
@@ -207,7 +181,6 @@ class DrawView: UIView {
         let location = touch.location(in: self)
                 
         currentDrawing?.points.append(location)
-        print(location)
         
         setNeedsDisplay()
     }
@@ -217,11 +190,10 @@ class DrawView: UIView {
         if var drawing = currentDrawing {
             let touch = touches.first!
             let location = touch.location(in: self)
-            print("finishDraw: \(finishedDrawings.count)")
-            print(finishedDrawings)
             let docID = "draw" + String(finishedDrawings.count)
             drawing.points.append(location)
             writeDB(docID: docID, draw: drawing)
+            moveShare(drawing: drawing)
         }
         currentDrawing = nil
         setNeedsDisplay()
@@ -231,7 +203,6 @@ class DrawView: UIView {
         finishedDrawings.forEach{(docID, draw) in
             removeDB(docID: docID)
         }
-//        finishedDrawings.removeAll()
         setNeedsDisplay()
     }
     
@@ -240,9 +211,7 @@ class DrawView: UIView {
             return
         }
         let  latestDraw = finishedDrawings[finishedDrawings.count - 1].0
-//        finishedDrawings.remove(at: finishedDrawings.count - 1)
         removeDB(docID: latestDraw)
-        setNeedsDisplay()
     }
     
     func setDrawingColor(color : UIColor){
@@ -302,13 +271,6 @@ class DrawView: UIView {
                 print("Error removing document: \(err)")
             } else {
                 print("Document successfully removed : \(docID)!")
-            }
-            self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).document("share").collection("share").document(docID).delete(){err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                } else {
-                    print("Document successfully removed : \(docID)!")
-                }
             }
         }
     }

@@ -101,25 +101,6 @@ class AllBoard: UIViewController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //キーボードの表示に関すること
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,12 +9,18 @@
 import UIKit
 import Firebase
 
-class Note: UIViewController {
+class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var drawView: DrawView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var Page: UILabel!
     @IBOutlet weak var subjuct: UILabel!
     @IBOutlet weak var ShareWindow: ShareDrawView!
+    @IBOutlet weak var shareWindowTable: UITableView!
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var  shareList = [String]()
+    
+    let shareWindowHeight = CGFloat(150)
     var PageNum = 0
     var Note: String?
     let db = Firestore.firestore()
@@ -25,11 +31,128 @@ class Note: UIViewController {
         subjuct.text = self.Note
         segmentedControl.selectedSegmentIndex = 0
         Page.text = "page" + String(PageNum)
-        Page.text = "page" + String(PageNum)
-        ShareWindow.readyDB(note: Note!, page: Page.text!)
-        drawView.readyDB(note: Note!, page: Page.text!, ShareWindow: ShareWindow)
+        
+        let window = sharingWindow(window: ShareWindow)
+        
+        let ref = self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(Note!).collection("Share")
+        
+        ref.document("page").setData([
+            "page": Page.text
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        ref.document("frameX").setData([
+            "frameLeft": window.ShareLeft,
+            "frameRight": window.ShareRight!
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        ref.document("frameY").setData([
+            "frameTop": window.ShareTop,
+            "frameBottom": window.ShareBottom!
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        drawView.readyDB(note: Note!, page: Page.text!, ShareWindow: window)
+        shareWindowTable.delegate = self
+        shareWindowTable.dataSource = self
+        shareWindowTable.register (UINib(nibName: "shareWindow", bundle: nil),forCellReuseIdentifier:"shareWindow")
+        shareWindowTable.tableFooterView = UIView()
+        
+        ShareWindow.readyDB(note: Note!, Username: self.appDelegate.UserName!, ShareWindow: window)
+        
+        
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.Note!).addSnapshotListener({ [self]querySnapshot, err in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(err!)")
+                return
+            }
+            snapshot.documentChanges.forEach{diff in
+                if diff.type == .added{
+                    if diff.document.documentID != self.appDelegate.UserName! {
+                        print("New share")
+                        shareList.append(diff.document.documentID)
+                        self.shareWindowTable.reloadData()
+                    }
+                }
+                if diff.type == .removed{
+                    if diff.document.documentID != self.appDelegate.UserName! {
+                        print(diff.document.documentID)
+                        
+                        for i in 0...self.shareList.count{
+                            if diff.document.documentID == self.shareList[i]{
+                                self.shareList.remove(at: i)
+                                self.shareWindowTable.reloadData()
+                                break
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        })
+        
         // Do any additional setup after loading the view.
     }
+    
+    func changePage() -> Void {
+        Page.text = "page" + String(PageNum)
+        
+        let window = sharingWindow(window: ShareWindow)
+        
+        let ref = self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(Note!).collection("Share")
+        
+        ref.document("page").setData([
+            "page": Page.text
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        ref.document("frameX").setData([
+            "frameLeft": window.ShareLeft,
+            "frameRight": window.ShareRight!
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        ref.document("frameY").setData([
+            "frameTop": window.ShareTop,
+            "frameBottom": window.ShareBottom!
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        drawView.readyDB(note: Note!, page: Page.text!, ShareWindow: window)
+        
+    }
+    
 
     @IBAction func clearTapped(_ sender: Any) {
         drawView.clear()
@@ -57,14 +180,68 @@ class Note: UIViewController {
         if PageNum != 0{
             PageNum -= 1
             Page.text = "page" + String(PageNum)
-            viewDidLoad()
+            changePage()
         }
     }
     
     @IBAction func TapNextPage(_ sender: Any) {
         PageNum += 1
         Page.text = "page" + String(PageNum)
-        viewDidLoad()
+        changePage()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return shareList.count
+      }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            // セルの内容を取得
+        
+        let window = sharingWindow(window: ShareWindow)
+            
+        let cell = tableView.dequeueReusableCell(withIdentifier: "shareWindow") as! shareWindow
+        
+        cell.Username.text = shareList[indexPath.row]
+        cell.Username.textAlignment = .center
+        cell.Username.adjustsFontSizeToFitWidth = true
+        
+        cell.drawWindow.readyDB(note: self.Note!, Username: shareList[indexPath.row], ShareWindow: window)
+        
+        return cell
+        }
+
+
+        // セルの高さを設定
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return shareWindowHeight
+        }
+
+    @IBAction func TapBack(_ sender: Any) {
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.Note!).document(self.appDelegate.UserName!).delete(){err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                self.performSegue(withIdentifier: "toStudyRoom", sender: nil)
+            }
+        }
     }
 }
 
+
+
+class sharingWindow{
+    var ShareTop = CGFloat(0)
+    var ShareLeft = CGFloat(0)
+    var ShareBottom: CGFloat?
+    var ShareRight: CGFloat?
+    var overX = CGFloat(0)
+    var overY = CGFloat(0)
+    
+    
+    
+    init(window: ShareDrawView) {
+        ShareRight = window.frame.width
+        ShareBottom = window.frame.height
+    }
+}
