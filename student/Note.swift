@@ -84,14 +84,14 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             snapshot.documentChanges.forEach{diff in
                 if diff.type == .added{
-                    if diff.document.documentID != self.appDelegate.UserName! {
+                    if diff.document.documentID != self.appDelegate.UserName!, diff.document.documentID != "TotalTime"{
                         print("New share")
                         shareList.append(diff.document.documentID)
                         self.shareWindowTable.reloadData()
                     }
                 }
                 if diff.type == .removed{
-                    if diff.document.documentID != self.appDelegate.UserName! {
+                    if diff.document.documentID != self.appDelegate.UserName!, diff.document.documentID != "TotalTime"{
                         print(diff.document.documentID)
                         
                         for i in 0...self.shareList.count{
