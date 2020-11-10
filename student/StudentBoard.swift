@@ -22,9 +22,6 @@ import SVProgressHUD
 
 class StudentBoard: UIViewController {
  
-
-    @IBOutlet weak var Title_area: UITextField!
-    @IBOutlet weak var content: UITextField!
     
     let db = Firestore.firestore()
     var boarddb:BoardDB?
@@ -34,7 +31,7 @@ class StudentBoard: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.boarddb = BoardDB(board: "studentboard", className: self.appDelegate.whichClass!, view: self.view, centerX: view.frame.size.width/2, centerY: view.frame.size.height/2)
+        self.boarddb = BoardDB(board: "studentboard", className: self.appDelegate.whichClass!, view: self.view, centerX: view.frame.size.width/2, centerY: view.frame.size.height/2, Flag: true)
     }
     
     // 画面にタッチで呼ばれる
@@ -68,36 +65,9 @@ class StudentBoard: UIViewController {
  
  
     @IBAction func addBoard(_ sender: Any) {
-        
-        if let title = Title_area.text,
-           let con = content.text {
-        
-            if con.isEmpty {
-                SVProgressHUD.showError(withStatus: "Oops!")
-                content.layer.borderColor = UIColor.red.cgColor
-                return
-            }
-            if title.isEmpty {
-                SVProgressHUD.showError(withStatus: "Oops!")
-                Title_area.layer.borderColor = UIColor.red.cgColor
-                return
-            }
-            content.text = ""
-            Title_area.text = ""
-    
-            boarddb!.writeDB(name: self.appDelegate.UserName!, title: title, content: con, width:250, height:250)
-            
-            
-            self.db.collection("class").document(self.appDelegate.whichClass!).collection("studentboard").document("count").updateData([
-                "count": FieldValue.increment(Int64(1))
-            ]){err in
-                if let err = err {
-                    print("Error StudyTime: \(err)")
-                }else {
-                    print("StudyTime successfully updated!")
-                }
-            }
-        }
+        let addboard = self.storyboard?.instantiateViewController(withIdentifier: "AddBoard") as! AddBorad
+        addboard.BoardName = "studentboard"
+        self.present(addboard, animated: true, completion: nil)
     }
     
     func deleteBorad() -> Void {
@@ -105,7 +75,7 @@ class StudentBoard: UIViewController {
         self.boarddb?.deleteBoard(whichBoard: self.whichBoard)
     }
     
-    func Reply(UserName: String, Content: String, Title: String, boardTag: Int) -> Void {
+    func Reply(UserName: String, Content: String, Title: String, boardTag: Int, time: String) -> Void {
         
         let replyboard = self.storyboard?.instantiateViewController(withIdentifier: "ReplyBoard") as! ReplyBoard
         print(Content)
@@ -113,75 +83,13 @@ class StudentBoard: UIViewController {
         replyboard.Content = Content
         replyboard.UserName = UserName
         replyboard.docID = boarddb?.boards[boardTag].0
+        replyboard.time = time
         replyboard.boardName = "studentboard"
         self.present(replyboard, animated: true, completion: nil)
     }
-
     
-    
-    
-    
-    
-    
-    
-    
-    
-    //キーボードの表示に関すること
-    
-    override func viewWillAppear(_ animated: Bool) {
-
-        super.viewWillAppear(animated)
-        self.configureObserver()
-
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-
-        super.viewWillDisappear(animated)
-        self.removeObserver() // Notificationを画面が消えるときに削除
-    }
-
-    // Notificationを設定
-    func configureObserver() {
-
-        let notification = NotificationCenter.default
-        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    // Notificationを削除
-    func removeObserver() {
-
-        let notification = NotificationCenter.default
-        notification.removeObserver(self)
-    }
-
-    // キーボードが現れた時に、画面全体をずらす。
-    @objc func keyboardWillShow(notification: Notification?) {
-
-        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
-        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
-            let transform = CGAffineTransform(translationX: 0, y: -(rect?.size.height)!)
-            self.view.transform = transform
-
-        })
-    }
-
-    // キーボードが消えたときに、画面を戻す
-    @objc func keyboardWillHide(notification: Notification?) {
-
-        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
-
-            self.view.transform = CGAffineTransform.identity
-        })
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
-        textField.resignFirstResponder() // Returnキーを押したときにキーボードを下げる
-        return true
+    @IBAction func Tapback(_ sender: Any) {
+        self.performSegue(withIdentifier: "backHome", sender: nil)
     }
 }
 

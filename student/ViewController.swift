@@ -23,6 +23,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var SocialTimeLabel: UILabel!
     @IBOutlet weak var AllboardTimesLabel: UILabel!
     @IBOutlet weak var StudentboardTimesLabel: UILabel!
+    @IBOutlet weak var BoardImage: UIImageView!
+    @IBOutlet weak var CalenderImage: UIImageView!
+    @IBOutlet weak var StudyRoomImage: UIImageView!
+    @IBOutlet weak var MyRoomImage: UIImageView!
+    @IBOutlet weak var ClassnameLabel: UILabel!
     
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let db = Firestore.firestore()
@@ -30,6 +35,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ClassnameLabel.text = appDelegate.whichClass! + "組"
         nowTime()
         Timer.scheduledTimer(timeInterval: 1/60, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
         
@@ -178,16 +184,18 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func toMyRoom(_ sender: Any) {
-    }
-    
-    @IBAction func toPublicBoard(_ sender: Any) {
-    }
-    
+
     @IBAction func toStudentBoard(_ sender: Any) {
+        self.performSegue(withIdentifier: "toStudyBoard", sender: nil)
     }
+    
+    @IBAction func TapMyRoom(_ sender: Any) {
+        self.performSegue(withIdentifier: "toMyRoom", sender: nil)
+    }
+    
     
     @IBAction func toStudyRoom(_ sender: Any) {
+        self.performSegue(withIdentifier: "toStudyRoom", sender: nil)
     }
 }
 

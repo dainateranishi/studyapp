@@ -17,6 +17,7 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var Page: UILabel!
     @IBOutlet weak var subjuct: UILabel!
     @IBOutlet weak var shareWindowTable: UITableView!
+    @IBOutlet weak var NextPageImage: UIImageView!
     var  shareList = [String]()
     let shareWindowHeight = CGFloat(150)
     var PageNum = 0
@@ -29,6 +30,8 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
         subjuct.text = self.Note
         segmentedControl.selectedSegmentIndex = 0
         Page.text = "page" + String(PageNum)
+        
+        NextPageImage.transform = NextPageImage.transform.scaledBy(x: -1, y: 1)
         
         let window = sharingWindow(window: shareWindowTable)
         
@@ -221,6 +224,7 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("Error StudyTime: \(err)")
             } else {
                 print("StudyTime successfully updated!")
+                self.performSegue(withIdentifier: "toStudyRoom", sender: nil)
             }
         }
         

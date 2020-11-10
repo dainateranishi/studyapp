@@ -13,10 +13,11 @@ class StudyRoom: UIViewController {
     let db = Firestore.firestore()
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    @IBOutlet weak var roomName: UILabel!
+    @IBOutlet weak var UserNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserNameLabel.text = self.appDelegate.UserName!
 
     }
     
@@ -82,4 +83,7 @@ class StudyRoom: UIViewController {
         performSegue(withIdentifier: "isSocial", sender: nil)
     }
     
+    @IBAction func TapBack(_ sender: Any) {
+        self.performSegue(withIdentifier: "backHomeFromStudyRoom", sender: nil)
+    }
 }

@@ -20,6 +20,7 @@ class ReplyBoard: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var CommentTable: UITableView!
     var Content: String? = nil
     var UserName: String? = nil
+    var time: String? = nil
     var docID: String? = nil
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var CommentList = [Comment]()
@@ -37,6 +38,7 @@ class ReplyBoard: UIViewController, UITableViewDelegate, UITableViewDataSource {
         className = appDelegate.whichClass
         ContentLabel.text = Content!
         ContentUser.text = UserName!
+        TimeLabel.text = time!
         CommentTable.delegate = self
         CommentTable.dataSource = self
         CommentTable.register (UINib(nibName: "CommentTableViewCell", bundle: nil),forCellReuseIdentifier:"CommentTableViewCell")

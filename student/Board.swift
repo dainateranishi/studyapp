@@ -12,9 +12,10 @@ import UIKit
 class Board: UIView {
 
     @IBOutlet weak var UserName: UILabel!
-    @IBOutlet weak var content: UILabel!
     @IBOutlet weak var title: UILabel!
-//    var storyboard: UIStoryboard?
+    @IBOutlet weak var time: UILabel!
+    var content: String?
+    //    var storyboard: UIStoryboard?
  
     
     override init(frame: CGRect) {
@@ -50,9 +51,9 @@ class Board: UIView {
     }
     @IBAction func TapReply(_ sender: Any) {
         if let parentV = self.parentViewController() as? AllBoard{
-            parentV.Reply(UserName: UserName.text!, Content: content.text!, Title: title.text!, boardTag: self.tag)
+            parentV.Reply(UserName: UserName.text!, Content: content!, Title: title.text!, boardTag: self.tag, time: time.text!)
         }else if let parentV = self.parentViewController() as? StudentBoard{
-            parentV.Reply(UserName: UserName.text!, Content: content.text!, Title: title.text!, boardTag: self.tag)
+            parentV.Reply(UserName: UserName.text!, Content: content!, Title: title.text!, boardTag: self.tag, time: time.text!)
         }
     }
     
