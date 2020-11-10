@@ -15,3 +15,17 @@ func nowTimeString() -> String {
     
     return dateFormatter.string(from: dt)
 }
+
+func StudyTime(startTime: String) -> Int{
+    let dt = Date()
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
+    
+    let fromTime = dateFormatter.date(from: startTime)
+    
+    let timeInternal = Calendar.current.dateComponents([.minute], from: fromTime!, to: dt).minute
+    
+    return timeInternal!
+    
+}

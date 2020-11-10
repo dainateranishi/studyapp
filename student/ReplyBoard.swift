@@ -99,9 +99,16 @@ class ReplyBoard: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.CommentArea.text = ""
                 
             }
-            
         }
-        
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.boardName!).document("count").updateData([
+            "count": FieldValue.increment(Int64(1))
+        ]){err in
+            if let err = err {
+                print("Error StudyTime: \(err)")
+            }else {
+                print("StudyTime successfully updated!")
+            }
+        }
     }
 }
 

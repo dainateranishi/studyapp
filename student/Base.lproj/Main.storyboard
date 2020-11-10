@@ -65,7 +65,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="49"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pass Word" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="pE5-GH-Y6h">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="pE5-GH-Y6h">
                                 <rect key="frame" x="70" y="345" width="628" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -143,7 +143,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pass Word" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="j6a-yY-Vey">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="j6a-yY-Vey">
                                 <rect key="frame" x="70" y="437" width="670" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="dAf-0t-8S9"/>
@@ -363,20 +363,76 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Japanese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLc-ry-LaE">
+                                <rect key="frame" x="594" y="384" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Math" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCr-rh-9Jo">
+                                <rect key="frame" x="594" y="422" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIb-eg-yo4">
+                                <rect key="frame" x="594" y="460" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Science" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yz-IH-vLI">
+                                <rect key="frame" x="594" y="498" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x56-up-LMz">
+                                <rect key="frame" x="594" y="536" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJV-Ry-p75">
+                                <rect key="frame" x="594" y="574" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbx-fr-wqW">
+                                <rect key="frame" x="594" y="612" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="AllboardTimesLabel" destination="aJV-Ry-p75" id="Q5J-DM-sk7"/>
                         <outlet property="Daylabel" destination="QGc-ua-f4g" id="eeK-S7-u24"/>
+                        <outlet property="EnglishTimeLabel" destination="KIb-eg-yo4" id="1xn-f3-g0K"/>
+                        <outlet property="JapaneseTimeLabel" destination="hLc-ry-LaE" id="LZU-tZ-ZxU"/>
                         <outlet property="LoginMember" destination="d7m-Wg-Jgb" id="hbF-TN-ZP0"/>
+                        <outlet property="MathTimeLabel" destination="fCr-rh-9Jo" id="wnO-80-IFd"/>
                         <outlet property="Monthlabel" destination="fRz-Nf-vka" id="JJ0-GH-i7R"/>
+                        <outlet property="ScienceTimeLabel" destination="5Yz-IH-vLI" id="BVO-IL-tay"/>
+                        <outlet property="SocialTimeLabel" destination="x56-up-LMz" id="Lk1-1U-QQk"/>
+                        <outlet property="StudentboardTimesLabel" destination="nbx-fr-wqW" id="SZK-nX-0QG"/>
                         <outlet property="TimeLabel" destination="J0W-ge-1a1" id="Ksk-8b-a2n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="225"/>
+            <point key="canvasLocation" x="102.96296296296296" y="225"/>
         </scene>
         <!--All Board-->
         <scene sceneID="1nm-7q-MQy">
@@ -873,13 +929,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-ZC-wtQ" customClass="ShareDrawView" customModule="student" customModuleProvider="target">
-                                <rect key="frame" x="20" y="338" width="269" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tde-Yv-AHe">
-                                <rect key="frame" x="20" y="509" width="269" height="444"/>
+                                <rect key="frame" x="20" y="322" width="269" height="631"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -902,7 +953,6 @@
                     </view>
                     <connections>
                         <outlet property="Page" destination="1W7-oV-2KJ" id="6an-Jp-qVM"/>
-                        <outlet property="ShareWindow" destination="NSy-ZC-wtQ" id="6dc-ga-ANa"/>
                         <outlet property="drawView" destination="mNN-lk-aON" id="7dg-Q4-VIg"/>
                         <outlet property="segmentedControl" destination="ZT2-Hn-vIA" id="MKH-W9-pp6"/>
                         <outlet property="shareWindowTable" destination="tde-Yv-AHe" id="mip-vV-Qd5"/>
@@ -1033,7 +1083,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pass Word" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-nm-J5b">
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-nm-J5b">
                                 <rect key="frame" x="50" y="408" width="710" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="T6x-it-H00"/>
@@ -1114,8 +1164,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="DoO-q7-bRA"/>
         <segue reference="Rrk-8w-o9z"/>
-        <segue reference="pcJ-G8-PKG"/>
-        <segue reference="b8F-Xy-S03"/>
+        <segue reference="mcz-rz-PKv"/>
+        <segue reference="TxD-X6-sh1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">

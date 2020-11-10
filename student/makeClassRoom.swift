@@ -59,35 +59,35 @@ class MakeClassViewController: UIViewController {
                                 } else {
                                     print("Document successfully written!")
                                     ref.collection("Japanese").document("TotalTime").setData([
-                                        "time": "noTime"
+                                        "time": 0
                                     ]){ err in
                                         if let err = err {
                                             print("Error writing document: \(err)")
                                         } else {
                                             print("Document successfully written!")
                                             ref.collection("Math").document("TotalTime").setData([
-                                                "time": "noTime"
+                                                "time": 0
                                             ]){ err in
                                                 if let err = err {
                                                     print("Error writing document: \(err)")
                                                 } else {
                                                     print("Document successfully written!")
                                                     ref.collection("English").document("TotalTime").setData([
-                                                        "time": "noTime"
+                                                        "time": 0
                                                     ]){ err in
                                                         if let err = err {
                                                             print("Error writing document: \(err)")
                                                         } else {
                                                             print("Document successfully written!")
                                                             ref.collection("Science").document("TotalTime").setData([
-                                                                "time": "noTime"
+                                                                "time": 0
                                                             ]){ err in
                                                                 if let err = err {
                                                                     print("Error writing document: \(err)")
                                                                 } else {
                                                                     print("Document successfully written!")
                                                                     ref.collection("Social").document("TotalTime").setData([
-                                                                        "time": "noTime"
+                                                                        "time": 0
                                                                     ]){ err in
                                                                         if let err = err {
                                                                             print("Error writing document: \(err)")

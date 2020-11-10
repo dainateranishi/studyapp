@@ -10,20 +10,18 @@ import UIKit
 import Firebase
 
 class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let db = Firestore.firestore()
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var drawView: DrawView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var Page: UILabel!
     @IBOutlet weak var subjuct: UILabel!
-    @IBOutlet weak var ShareWindow: ShareDrawView!
     @IBOutlet weak var shareWindowTable: UITableView!
-    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     var  shareList = [String]()
-    
     let shareWindowHeight = CGFloat(150)
     var PageNum = 0
     var Note: String?
-    let db = Firestore.firestore()
+    var LoginTime: String?
     
     
     override func viewDidLoad() {
@@ -32,7 +30,7 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
         segmentedControl.selectedSegmentIndex = 0
         Page.text = "page" + String(PageNum)
         
-        let window = sharingWindow(window: ShareWindow)
+        let window = sharingWindow(window: shareWindowTable)
         
         let ref = self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(Note!).collection("Share")
         
@@ -74,8 +72,6 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
         shareWindowTable.register (UINib(nibName: "shareWindow", bundle: nil),forCellReuseIdentifier:"shareWindow")
         shareWindowTable.tableFooterView = UIView()
         
-        ShareWindow.readyDB(note: Note!, Username: self.appDelegate.UserName!, ShareWindow: window)
-        
         
         self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.Note!).addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
@@ -113,7 +109,7 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func changePage() -> Void {
         Page.text = "page" + String(PageNum)
         
-        let window = sharingWindow(window: ShareWindow)
+        let window = sharingWindow(window: shareWindowTable)
         
         let ref = self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(Note!).collection("Share")
         
@@ -197,7 +193,7 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             // セルの内容を取得
         
-        let window = sharingWindow(window: ShareWindow)
+        let window = sharingWindow(window: shareWindowTable)
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "shareWindow") as! shareWindow
         
@@ -217,6 +213,18 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
     @IBAction func TapBack(_ sender: Any) {
+        
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.Note!).document("TotalTime").updateData([
+            "time": FieldValue.increment(Int64(StudyTime(startTime: self.LoginTime!)))
+        ]){err in
+            if let err = err {
+                print("Error StudyTime: \(err)")
+            } else {
+                print("StudyTime successfully updated!")
+            }
+        }
+        
+        
         self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.Note!).document(self.appDelegate.UserName!).delete(){err in
             if let err = err {
                 print("Error removing document: \(err)")
@@ -240,8 +248,8 @@ class sharingWindow{
     
     
     
-    init(window: ShareDrawView) {
+    init(window: UITableView) {
         ShareRight = window.frame.width
-        ShareBottom = window.frame.height
+        ShareBottom = CGFloat(150)
     }
 }

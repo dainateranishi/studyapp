@@ -16,6 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var Daylabel: UILabel!
     @IBOutlet weak var TimeLabel: UILabel!
     @IBOutlet weak var LoginMember: UILabel!
+    @IBOutlet weak var JapaneseTimeLabel: UILabel!
+    @IBOutlet weak var MathTimeLabel: UILabel!
+    @IBOutlet weak var EnglishTimeLabel: UILabel!
+    @IBOutlet weak var ScienceTimeLabel: UILabel!
+    @IBOutlet weak var SocialTimeLabel: UILabel!
+    @IBOutlet weak var AllboardTimesLabel: UILabel!
+    @IBOutlet weak var StudentboardTimesLabel: UILabel!
     
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let db = Firestore.firestore()
@@ -26,6 +33,7 @@ class ViewController: UIViewController {
         nowTime()
         Timer.scheduledTimer(timeInterval: 1/60, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
         
+        //入室した生徒の表示
         self.db.collection("class").document(self.appDelegate.whichClass!).addSnapshotListener{documentSnapshot, error in
             guard let document = documentSnapshot else {
               print("Error fetching document: \(error!)")
@@ -42,6 +50,97 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
+        //国語の時間を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Japanese").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            JapaneseTimeLabel.text = "Japanese : " + String(document.get("time") as! Int) + "分"
+          }
+        
+        //数学の時間を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Math").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            MathTimeLabel.text = "Math : " + String(document.get("time") as! Int) + "分"
+          }
+        
+        //英語の時間を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("English").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            EnglishTimeLabel.text = "English : " + String(document.get("time") as! Int) + "分"
+          }
+        
+        //理科の時間を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Science").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            ScienceTimeLabel.text = "Science : " + String(document.get("time") as! Int) + "分"
+          }
+        
+        //社会の時間を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Social").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            SocialTimeLabel.text = "Social : " + String(document.get("time") as! Int) + "分"
+          }
+        
+        //全体掲示板の回数を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("allboard").document("count").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            AllboardTimesLabel.text = "AllBoard : " + String(document.get("count") as! Int) + "回"
+          }
+        
+        //学生掲示板の回数を表示
+        self.db.collection("class").document(self.appDelegate.whichClass!).collection("studentboard").document("count").addSnapshotListener{ [self] documentSnapshot, error in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            StudentboardTimesLabel.text = "StBoard : " + String(document.get("count") as! Int) + "回"
+          }
         // Do any additional setup after loading the view.
     }
     

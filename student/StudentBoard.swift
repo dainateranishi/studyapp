@@ -26,9 +26,9 @@ class StudentBoard: UIViewController {
     @IBOutlet weak var Title_area: UITextField!
     @IBOutlet weak var content: UITextField!
     
+    let db = Firestore.firestore()
     var boarddb:BoardDB?
     var whichBoard = 1
-    
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
@@ -86,6 +86,17 @@ class StudentBoard: UIViewController {
             Title_area.text = ""
     
             boarddb!.writeDB(name: self.appDelegate.UserName!, title: title, content: con, width:250, height:250)
+            
+            
+            self.db.collection("class").document(self.appDelegate.whichClass!).collection("studentboard").document("count").updateData([
+                "count": FieldValue.increment(Int64(1))
+            ]){err in
+                if let err = err {
+                    print("Error StudyTime: \(err)")
+                }else {
+                    print("StudyTime successfully updated!")
+                }
+            }
         }
     }
     

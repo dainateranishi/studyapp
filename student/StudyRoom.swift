@@ -26,14 +26,19 @@ class StudyRoom: UIViewController {
         // segueのIDを確認して特定のsegueのときのみ動作させる
         if segue.identifier == "isJapanese" {
             next?.Note = "Japanese"
+            next?.LoginTime = nowTimeString()
         }else if segue.identifier == "isMath" {
             next?.Note = "Math"
+            next?.LoginTime = nowTimeString()
         }else if segue.identifier == "isEnglish" {
             next?.Note = "English"
+            next?.LoginTime = nowTimeString()
         }else if segue.identifier == "isScience" {
             next?.Note = "Science"
+            next?.LoginTime = nowTimeString()
         }else if segue.identifier == "isSocial" {
             next?.Note = "Social"
+            next?.LoginTime = nowTimeString()
         }
     }
     

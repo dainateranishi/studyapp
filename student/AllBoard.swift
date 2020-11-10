@@ -20,6 +20,7 @@ class AllBoard: UIViewController {
     var boarddb:BoardDB?
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var whichBoard: Int = 1
+    let db = Firestore.firestore()
     
     
     override func viewDidLoad() {
@@ -78,6 +79,15 @@ class AllBoard: UIViewController {
             
             boarddb!.writeDB(name: self.appDelegate.UserName!, title: title, content: con, width:250, height:250)
             
+            self.db.collection("class").document(self.appDelegate.whichClass!).collection("allboard").document("count").updateData([
+                "count": FieldValue.increment(Int64(1))
+            ]){err in
+                if let err = err {
+                    print("Error StudyTime: \(err)")
+                }else {
+                    print("StudyTime successfully updated!")
+                }
+            }
         }
     }
     
@@ -89,8 +99,6 @@ class AllBoard: UIViewController {
     func Reply(UserName: String, Content: String, Title: String, boardTag: Int) -> Void {
         
         let replyboard = self.storyboard?.instantiateViewController(withIdentifier: "ReplyBoard") as! ReplyBoard
-        print(Content)
-        print(UserName)
         replyboard.Content = Content
         replyboard.UserName = UserName
         replyboard.docID = boarddb?.boards[boardTag].0
