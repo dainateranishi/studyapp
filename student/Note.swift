@@ -113,11 +113,13 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
                     if diff.document.documentID != self.appDelegate.UserName!, diff.document.documentID != "TotalTime"{
                         print(diff.document.documentID)
                         
-                        for i in 0...self.shareList.count{
-                            if diff.document.documentID == self.shareList[i]{
-                                self.shareList.remove(at: i)
-                                self.shareWindowTable.reloadData()
-                                break
+                        if self.shareList.count != 0{
+                            for i in 0...self.shareList.count{
+                                if diff.document.documentID == self.shareList[i]{
+                                    self.shareList.remove(at: i)
+                                    self.shareWindowTable.reloadData()
+                                    break
+                                }
                             }
                         }
                         

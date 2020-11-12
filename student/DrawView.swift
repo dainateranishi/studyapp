@@ -220,7 +220,7 @@ class DrawView: UIView {
     
     func stroke(drawing: Drawing) {
         let path = UIBezierPath()
-        path.lineWidth = 10.0
+        path.lineWidth = 5.0
         path.lineCapStyle = .round
         path.lineJoinStyle = .round
         

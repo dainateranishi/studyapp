@@ -11,6 +11,16 @@
 		1702F6A0255ABDBF007B45ED /* UIViewBorder.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702F69F255ABDBF007B45ED /* UIViewBorder.swift.swift */; };
 		1702F6B1255C2F39007B45ED /* otherUserNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702F6B0255C2F38007B45ED /* otherUserNote.swift */; };
 		1702F6B6255C4003007B45ED /* otherDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702F6B5255C4003007B45ED /* otherDrawView.swift */; };
+		1702F6C4255CF420007B45ED /* character2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6BA255CF41E007B45ED /* character2.png */; };
+		1702F6C5255CF420007B45ED /* character3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6BB255CF41E007B45ED /* character3.png */; };
+		1702F6C6255CF420007B45ED /* red_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6BC255CF41E007B45ED /* red_flower.png */; };
+		1702F6C7255CF420007B45ED /* character5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6BD255CF41F007B45ED /* character5.png */; };
+		1702F6C8255CF420007B45ED /* pink_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6BE255CF41F007B45ED /* pink_flower.png */; };
+		1702F6C9255CF420007B45ED /* character4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6BF255CF41F007B45ED /* character4.png */; };
+		1702F6CA255CF420007B45ED /* character1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6C0255CF41F007B45ED /* character1.png */; };
+		1702F6CB255CF420007B45ED /* garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6C1255CF41F007B45ED /* garden.png */; };
+		1702F6CC255CF420007B45ED /* yellow_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6C2255CF420007B45ED /* yellow_flower.png */; };
+		1702F6CD255CF420007B45ED /* blue_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F6C3255CF420007B45ED /* blue_flower.png */; };
 		17E693E42549B3BC00E0597E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693E32549B3BC00E0597E /* AppDelegate.swift */; };
 		17E693E62549B3BC00E0597E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693E52549B3BC00E0597E /* SceneDelegate.swift */; };
 		17E693E82549B3BC00E0597E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693E72549B3BC00E0597E /* ViewController.swift */; };
@@ -86,6 +96,16 @@
 		1702F69F255ABDBF007B45ED /* UIViewBorder.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBorder.swift.swift; sourceTree = "<group>"; };
 		1702F6B0255C2F38007B45ED /* otherUserNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otherUserNote.swift; sourceTree = "<group>"; };
 		1702F6B5255C4003007B45ED /* otherDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otherDrawView.swift; sourceTree = "<group>"; };
+		1702F6BA255CF41E007B45ED /* character2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character2.png; sourceTree = "<group>"; };
+		1702F6BB255CF41E007B45ED /* character3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character3.png; sourceTree = "<group>"; };
+		1702F6BC255CF41E007B45ED /* red_flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_flower.png; sourceTree = "<group>"; };
+		1702F6BD255CF41F007B45ED /* character5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character5.png; sourceTree = "<group>"; };
+		1702F6BE255CF41F007B45ED /* pink_flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pink_flower.png; sourceTree = "<group>"; };
+		1702F6BF255CF41F007B45ED /* character4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character4.png; sourceTree = "<group>"; };
+		1702F6C0255CF41F007B45ED /* character1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character1.png; sourceTree = "<group>"; };
+		1702F6C1255CF41F007B45ED /* garden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = garden.png; sourceTree = "<group>"; };
+		1702F6C2255CF420007B45ED /* yellow_flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_flower.png; sourceTree = "<group>"; };
+		1702F6C3255CF420007B45ED /* blue_flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_flower.png; sourceTree = "<group>"; };
 		17E693E02549B3BC00E0597E /* student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E693E32549B3BC00E0597E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17E693E52549B3BC00E0597E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +285,16 @@
 			isa = PBXGroup;
 			children = (
 				17F52217255AA4A000563997 /* add.png */,
+				1702F6C3255CF420007B45ED /* blue_flower.png */,
+				1702F6C0255CF41F007B45ED /* character1.png */,
+				1702F6BA255CF41E007B45ED /* character2.png */,
+				1702F6BB255CF41E007B45ED /* character3.png */,
+				1702F6BF255CF41F007B45ED /* character4.png */,
+				1702F6BD255CF41F007B45ED /* character5.png */,
+				1702F6C1255CF41F007B45ED /* garden.png */,
+				1702F6BE255CF41F007B45ED /* pink_flower.png */,
+				1702F6BC255CF41E007B45ED /* red_flower.png */,
+				1702F6C2255CF420007B45ED /* yellow_flower.png */,
 				17F52216255AA49F00563997 /* back.png */,
 				17F52212255AA49F00563997 /* board1.png */,
 				17F5221A255AA4A000563997 /* board2.png */,
@@ -413,24 +443,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1702F6C5255CF420007B45ED /* character3.png in Resources */,
 				17F5221E255AA4A100563997 /* board1.png in Resources */,
+				1702F6C9255CF420007B45ED /* character4.png in Resources */,
 				17E693F02549B3BF00E0597E /* LaunchScreen.storyboard in Resources */,
 				17F52220255AA4A100563997 /* studyRoom.png in Resources */,
 				17F52223255AA4A100563997 /* add.png in Resources */,
 				1702F69B255AA6F1007B45ED /* calender2.png in Resources */,
+				1702F6CA255CF420007B45ED /* character1.png in Resources */,
 				17F52203255A34DC00563997 /* login.jpg in Resources */,
+				1702F6C7255CF420007B45ED /* character5.png in Resources */,
 				17F52222255AA4A100563997 /* back.png in Resources */,
 				17F52225255AA4A100563997 /* calender.png in Resources */,
 				17F52227255AA4A100563997 /* className.png in Resources */,
 				17F52228255AA4A100563997 /* confirm.png in Resources */,
 				17F5221D255AA4A100563997 /* good.png in Resources */,
 				17FE9EFC2554C060006C8BB6 /* CommentTableViewCell.xib in Resources */,
+				1702F6CC255CF420007B45ED /* yellow_flower.png in Resources */,
+				1702F6C4255CF420007B45ED /* character2.png in Resources */,
+				1702F6CD255CF420007B45ED /* blue_flower.png in Resources */,
 				17F52224255AA4A100563997 /* board3.png in Resources */,
 				17FE9DFD254B9590006C8BB6 /* GoogleService-Info.plist in Resources */,
 				17F5221F255AA4A100563997 /* MyRoom.png in Resources */,
 				17F52221255AA4A100563997 /* toBoard.png in Resources */,
+				1702F6C6255CF420007B45ED /* red_flower.png in Resources */,
 				17F521F32558175F00563997 /* shareWindow.xib in Resources */,
+				1702F6CB255CF420007B45ED /* garden.png in Resources */,
 				17E693ED2549B3BF00E0597E /* Assets.xcassets in Resources */,
+				1702F6C8255CF420007B45ED /* pink_flower.png in Resources */,
 				17E693EB2549B3BC00E0597E /* Main.storyboard in Resources */,
 				17FE9E4D254C0523006C8BB6 /* Board.xib in Resources */,
 				17F52226255AA4A100563997 /* board2.png in Resources */,
