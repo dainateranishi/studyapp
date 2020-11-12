@@ -311,7 +311,7 @@
                                 </connections>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IGj-gP-Fit">
-                                <rect key="frame" x="60" y="841" width="574" height="207"/>
+                                <rect key="frame" x="60" y="841" width="574" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>

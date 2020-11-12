@@ -60,19 +60,18 @@ class ViewController: UIViewController {
                         self.LoginList.append(name)
                         let chara = Character()
                         chara.UserName.text = name
-                        chara.setCharacter(imageName: "character4.png")
                         
-//                        if name == "taro"{
-//                            chara.setCharacter(imageName: "character4.png")
-//                        }else if name == "hana"{
-//                            chara.setCharacter(imageName: "character1.png")
-//                        }else{
-//                            chara.setCharacter(imageName: "character3.png")
-//                        }
+                        if name == "taro"{
+                            chara.setCharacter(imageName: "character4.png")
+                        }else if name == "Hana"{
+                            chara.setCharacter(imageName: "character1.png")
+                        }else{
+                            chara.setCharacter(imageName: "character3.png")
+                        }
                         
-                        chara.frame = CGRect(x: 0, y: 0, width: CGFloat(150), height: CGFloat(200))
-                        chara.center = CGPoint(x:CGFloat(Int(self.LoginUserView.frame.minX)/3 * self.LoginList.count), y: CGFloat(self.LoginUserView.frame.minY/2))
-                        
+//                        chara.frame = CGRect(x: 0, y: 0, width: CGFloat(150), height: CGFloat(200))
+                        chara.center = CGPoint(x:CGFloat(200 * (self.LoginList.count-1)), y: CGFloat(0))
+//
                         self.LoginUserView.addSubview(chara)
                         
                         
