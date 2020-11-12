@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1702F69B255AA6F1007B45ED /* calender2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1702F69A255AA6F1007B45ED /* calender2.png */; };
 		1702F6A0255ABDBF007B45ED /* UIViewBorder.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702F69F255ABDBF007B45ED /* UIViewBorder.swift.swift */; };
+		1702F6B1255C2F39007B45ED /* otherUserNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702F6B0255C2F38007B45ED /* otherUserNote.swift */; };
+		1702F6B6255C4003007B45ED /* otherDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702F6B5255C4003007B45ED /* otherDrawView.swift */; };
 		17E693E42549B3BC00E0597E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693E32549B3BC00E0597E /* AppDelegate.swift */; };
 		17E693E62549B3BC00E0597E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693E52549B3BC00E0597E /* SceneDelegate.swift */; };
 		17E693E82549B3BC00E0597E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E693E72549B3BC00E0597E /* ViewController.swift */; };
@@ -82,6 +84,8 @@
 		02FB7ED5BE984E929F9206E1 /* Pods-studentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-studentTests.debug.xcconfig"; path = "Target Support Files/Pods-studentTests/Pods-studentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1702F69A255AA6F1007B45ED /* calender2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calender2.png; sourceTree = "<group>"; };
 		1702F69F255ABDBF007B45ED /* UIViewBorder.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBorder.swift.swift; sourceTree = "<group>"; };
+		1702F6B0255C2F38007B45ED /* otherUserNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otherUserNote.swift; sourceTree = "<group>"; };
+		1702F6B5255C4003007B45ED /* otherDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otherDrawView.swift; sourceTree = "<group>"; };
 		17E693E02549B3BC00E0597E /* student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E693E32549B3BC00E0597E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17E693E52549B3BC00E0597E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				17E693E52549B3BC00E0597E /* SceneDelegate.swift */,
 				17E693E72549B3BC00E0597E /* ViewController.swift */,
 				17E693E92549B3BC00E0597E /* Main.storyboard */,
+				1702F6B5255C4003007B45ED /* otherDrawView.swift */,
+				1702F6B0255C2F38007B45ED /* otherUserNote.swift */,
 				17F5220C255A3BFE00563997 /* AddBorad.swift */,
 				17F52207255A3B0600563997 /* PlaceHolderTextView.swift */,
 				17F521FC2559701600563997 /* makeClassRoom.swift */,
@@ -555,6 +561,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1702F6B1255C2F39007B45ED /* otherUserNote.swift in Sources */,
+				1702F6B6255C4003007B45ED /* otherDrawView.swift in Sources */,
 				17FE9DF0254B8C86006C8BB6 /* StudentBoard.swift in Sources */,
 				17F521E72557E89D00563997 /* AppEventHandler.swift in Sources */,
 				17FE9E48254BACF5006C8BB6 /* SignIn.swift in Sources */,
@@ -758,6 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XA9FF7MS5Q;
 				INFOPLIST_FILE = student/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -777,6 +786,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XA9FF7MS5Q;
 				INFOPLIST_FILE = student/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -945,7 +945,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tde-Yv-AHe">
-                                <rect key="frame" x="20" y="186" width="269" height="720"/>
+                                <rect key="frame" x="20" y="269" width="269" height="637"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -954,7 +954,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0001135903781" green="0.59084034630000004" blue="0.33919109120000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back.png" translatesAutoresizingMaskIntoConstraints="NO" id="CyO-VI-gbh">
@@ -989,13 +989,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTd-tv-Bae">
+                                <rect key="frame" x="62" y="190" width="185" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.0010034890330000001" green="0.35340601329999999" blue="0.001557004603" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="TapChatOrShare:" destination="kYF-lX-KmF" eventType="touchUpInside" id="plQ-hB-GPd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxo-Ta-jPY">
+                                <rect key="frame" x="73" y="198" width="162" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7I-1E-sL3">
+                                <rect key="frame" x="20" y="923" width="269" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uGy-hR-Ky8">
+                                        <rect key="frame" x="0.0" y="8" width="261" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POC-tv-BfG">
+                                        <rect key="frame" x="183" y="50" width="78" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="add"/>
+                                        <connections>
+                                            <action selector="TapChatAdd:" destination="kYF-lX-KmF" eventType="touchUpInside" id="4Vc-Re-bOG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ci4-rT-f3K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="MessageOrShareLabel" destination="xxo-Ta-jPY" id="bw4-JZ-x1d"/>
                         <outlet property="NextPageImage" destination="oTb-YM-CZ6" id="S5B-x2-FsL"/>
                         <outlet property="Page" destination="1W7-oV-2KJ" id="6an-Jp-qVM"/>
+                        <outlet property="chatText" destination="uGy-hR-Ky8" id="XMX-fu-VsE"/>
+                        <outlet property="chatView" destination="G7I-1E-sL3" id="QdA-1q-HWA"/>
+                        <outlet property="chatadd" destination="POC-tv-BfG" id="GMY-Ax-wde"/>
                         <outlet property="drawView" destination="mNN-lk-aON" id="7dg-Q4-VIg"/>
                         <outlet property="segmentedControl" destination="ZT2-Hn-vIA" id="MKH-W9-pp6"/>
                         <outlet property="shareWindowTable" destination="tde-Yv-AHe" id="mip-vV-Qd5"/>
@@ -1021,6 +1064,108 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2060" y="2115.5555555555557"/>
+        </scene>
+        <!--Other User Note-->
+        <scene sceneID="kOW-dT-AiV">
+            <objects>
+                <viewController storyboardIdentifier="OtherNote" id="7q3-z0-5NB" customClass="OtherUserNote" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AXB-R4-8aQ">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycn-bC-xjc" customClass="OtherDrawView" customModule="student" customModuleProvider="target">
+                                <rect key="frame" x="343" y="187" width="414" height="735"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                <color key="tintColor" red="0.037738188800000003" green="0.21404135229999999" blue="0.069071425170000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="linkColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="45"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vt2-Qx-H6f">
+                                <rect key="frame" x="569" y="41" width="164" height="124"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="LAx-2x-ueC" appends="YES" id="e4h-mX-srH"/>
+                                </connections>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="className.png" id="V1y-Ly-cYV">
+                                <rect key="frame" x="42" y="20" width="269" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="japanese" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCd-r2-mao">
+                                <rect key="frame" x="95" y="92" width="162" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0001135903781" green="0.59084034630000004" blue="0.33919109120000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G3e-dI-JM0">
+                                <rect key="frame" x="42" y="285" width="269" height="637"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJz-N1-CgG">
+                                <rect key="frame" x="67" y="206" width="219" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-8K-xnP">
+                                <rect key="frame" x="42" y="943" width="269" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaG-sc-FCV">
+                                        <rect key="frame" x="0.0" y="8" width="261" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yb-Us-Ppb">
+                                        <rect key="frame" x="183" y="50" width="78" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="add"/>
+                                        <connections>
+                                            <action selector="TapChatAdd:" destination="7q3-z0-5NB" eventType="touchUpInside" id="oac-na-ick"/>
+                                            <action selector="TapChatAdd:" destination="kYF-lX-KmF" eventType="touchUpInside" id="uuP-1O-KbD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z3E-hm-Ce4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="NoteLabel" destination="CCd-r2-mao" id="hCn-29-m7Y"/>
+                        <outlet property="backMyNote" destination="Vt2-Qx-H6f" id="98g-of-wv3"/>
+                        <outlet property="chatTable" destination="G3e-dI-JM0" id="IHo-Lq-HTE"/>
+                        <outlet property="chatText" destination="WaG-sc-FCV" id="wiw-Dm-jkb"/>
+                        <outlet property="otherUsername" destination="QJz-N1-CgG" id="qsL-mK-YQR"/>
+                        <outlet property="otherdrawView" destination="ycn-bC-xjc" id="uqA-JJ-Hqp"/>
+                        <segue destination="kYF-lX-KmF" kind="presentation" identifier="backMyNote" modalPresentationStyle="fullScreen" id="zBT-lB-KAG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQW-d4-xex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LAx-2x-ueC">
+                    <connections>
+                        <action selector="TapBack:" destination="7q3-z0-5NB" id="kME-if-GUP"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2889.6296296296296" y="2115.5555555555557"/>
         </scene>
         <!--My Room-->
         <scene sceneID="cMc-lp-hNF">
@@ -1221,11 +1366,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pWT-nZ-EXr"/>
-        <segue reference="Rrk-8w-o9z"/>
+        <segue reference="zBT-lB-KAG"/>
         <segue reference="pcJ-G8-PKG"/>
         <segue reference="5lG-vv-Y1c"/>
         <segue reference="X4K-Rs-Ogr"/>
-        <segue reference="b8F-Xy-S03"/>
+        <segue reference="Iag-hS-7VQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MyRoom.png" width="118.80000305175781" height="131.52000427246094"/>

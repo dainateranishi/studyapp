@@ -28,10 +28,12 @@
                         <rect key="frame" x="0.0" y="25" width="269" height="125"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                     </view>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="Username" destination="hEX-n6-8Rp" id="yeE-Xe-oyr"/>
                 <outlet property="drawWindow" destination="EaC-Ip-bkK" id="dsh-2I-g0d"/>

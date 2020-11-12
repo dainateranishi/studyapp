@@ -78,8 +78,6 @@ class StudentBoard: UIViewController {
     func Reply(UserName: String, Content: String, Title: String, boardTag: Int, time: String) -> Void {
         
         let replyboard = self.storyboard?.instantiateViewController(withIdentifier: "ReplyBoard") as! ReplyBoard
-        print(Content)
-        print(UserName)
         replyboard.Content = Content
         replyboard.UserName = UserName
         replyboard.docID = boarddb?.boards[boardTag].0

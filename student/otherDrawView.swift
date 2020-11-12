@@ -1,16 +1,15 @@
 //
-//  ShareDrawView.swift
+//  otherDrawView.swift
 //  student
 //
-//  Created by 寺西帝乃 on 2020/11/06.
+//  Created by 寺西帝乃 on 2020/11/12.
 //
 
 import Foundation
 import UIKit
 import Firebase
 
-class ShareDrawView: UIView {
-    var currentDrawing: Drawing?
+class OtherDrawView: UIView {
     var finishedDrawings:[(String, Drawing)] = []
     var currentColor = UIColor.black
     let db = Firestore.firestore()
@@ -18,18 +17,14 @@ class ShareDrawView: UIView {
     var Page = ""
     var className = ""
     var UserName = ""
-    var sharewindow: sharingWindow?
-
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    
-    func readyDB(note: String, Username: String, ShareWindow: sharingWindow) -> Void {
+    func readyDB(note: String, Username: String){
         self.finishedDrawings = []
         self.currentColor = UIColor.black
         self.Note = note
         self.className = self.appDelegate.whichClass!
         self.UserName = Username
-        self.sharewindow = ShareWindow
         
         self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection("Share").addSnapshotListener({ [self]querySnapshot, err in
             guard let snapshot = querySnapshot else {
@@ -43,7 +38,6 @@ class ShareDrawView: UIView {
                     self.finishedDrawings = []
                     setNeedsDisplay()
                     self.Page = diff.document.get("page") as! String
-                    getShareFrame()
                     self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection(self.Page).addSnapshotListener({ [self]querySnapshot, err in
                         guard let snapshot = querySnapshot else {
                             print("Error fetching snapshots: \(err!)")
@@ -95,49 +89,10 @@ class ShareDrawView: UIView {
         })
     }
     
-    func getShareFrame() -> Void {
-        self.db.collection("class").document(self.className).collection(self.UserName).document(self.Note).collection("Share").addSnapshotListener({ [self]querySnapshot, err in
-            guard let snapshot = querySnapshot else {
-                print("Error fetching snapshots: \(err!)")
-                return
-            }
-            snapshot.documentChanges.forEach{diff in
-                if(diff.type == .added){
-                    if diff.document.documentID == "frameX" {
-                        self.sharewindow!.ShareLeft = diff.document.get("frameLeft") as! CGFloat
-                        self.sharewindow!.ShareRight = diff.document.get("frameRight") as? CGFloat
-                    }
-                    if diff.document.documentID == "frameY" {
-                        self.sharewindow!.ShareTop = diff.document.get("frameTop") as! CGFloat
-                        self.sharewindow!.ShareBottom = diff.document.get("frameBottom") as? CGFloat
-                    }
-                }
-                if(diff.type == .modified){
-                    if diff.document.documentID == "frameX" {
-                        self.sharewindow!.ShareLeft = diff.document.get("frameLeft") as! CGFloat
-                        self.sharewindow!.ShareRight = diff.document.get("frameRight") as? CGFloat
-                    }
-                    if diff.document.documentID == "frameY" {
-                        self.sharewindow!.ShareTop = diff.document.get("frameTop") as! CGFloat
-                        self.sharewindow!.ShareBottom = diff.document.get("frameBottom") as? CGFloat
-                    }
-                }
-            }
-        })
-    }
-    
     override func draw(_ rect: CGRect) {
         for (_, drawing) in self.finishedDrawings {
-            
-            var frameDraw = Drawing()
-            frameDraw.color = drawing.color
-            frameDraw.color.setStroke()
-            
-            for point in drawing.points{
-                let po = CGPoint(x: point.x - self.sharewindow!.ShareLeft, y: point.y - self.sharewindow!.ShareTop)
-                frameDraw.points.append(po)
-            }
-            stroke(drawing: frameDraw)
+            drawing.color.setStroke()
+            stroke(drawing: drawing)
         }
     }
     
@@ -160,4 +115,6 @@ class ShareDrawView: UIView {
         path.stroke()
         
     }
+
 }
+
