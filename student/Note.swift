@@ -339,7 +339,14 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
             ])
             
             chatText.text = ""
+            chatText.endEditing(true)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        TapChatAdd(self)
+        return true
+        // 任意の処理
     }
     
     func toOtherNore(UserName: String) -> Void {

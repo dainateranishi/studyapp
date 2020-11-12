@@ -181,12 +181,10 @@
                                     <segue destination="bLc-PC-mnV" kind="presentation" modalPresentationStyle="fullScreen" id="pWT-nZ-EXr"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="class" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="1tE-Gh-eCs">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="class" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="1tE-Gh-eCs">
                                 <rect key="frame" x="70" y="151" width="670" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="Gco-sY-7Nb"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -206,8 +204,6 @@
                             <constraint firstItem="iNL-s4-3sL" firstAttribute="leading" secondItem="byG-Fl-cNg" secondAttribute="leading" id="S8o-7V-NHY"/>
                             <constraint firstItem="O51-16-e9b" firstAttribute="top" secondItem="j6a-yY-Vey" secondAttribute="bottom" constant="70" id="UbH-CK-Re6"/>
                             <constraint firstItem="j6a-yY-Vey" firstAttribute="top" secondItem="iNL-s4-3sL" secondAttribute="bottom" constant="46" id="XO2-Tx-xIc"/>
-                            <constraint firstItem="1tE-Gh-eCs" firstAttribute="leading" secondItem="byG-Fl-cNg" secondAttribute="leading" id="hds-ZS-b4S"/>
-                            <constraint firstItem="1tE-Gh-eCs" firstAttribute="trailing" secondItem="byG-Fl-cNg" secondAttribute="trailing" id="k5b-Vb-WvJ"/>
                             <constraint firstItem="9Iq-Gw-gUp" firstAttribute="trailing" secondItem="byG-Fl-cNg" secondAttribute="trailing" constant="70" id="oEN-Fl-dad"/>
                             <constraint firstItem="iNL-s4-3sL" firstAttribute="top" secondItem="byG-Fl-cNg" secondAttribute="bottom" constant="30" id="tLA-PO-mcE"/>
                             <constraint firstItem="iNL-s4-3sL" firstAttribute="trailing" secondItem="j6a-yY-Vey" secondAttribute="trailing" id="uOh-ry-VPK"/>
@@ -1016,7 +1012,7 @@
                                         <rect key="frame" x="0.0" y="8" width="261" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POC-tv-BfG">
                                         <rect key="frame" x="183" y="50" width="78" height="30"/>
@@ -1131,7 +1127,7 @@
                                         <rect key="frame" x="0.0" y="8" width="261" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yb-Us-Ppb">
                                         <rect key="frame" x="183" y="50" width="78" height="30"/>
@@ -1370,7 +1366,7 @@
         <segue reference="pcJ-G8-PKG"/>
         <segue reference="5lG-vv-Y1c"/>
         <segue reference="X4K-Rs-Ogr"/>
-        <segue reference="Iag-hS-7VQ"/>
+        <segue reference="n3E-UR-8dT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MyRoom.png" width="118.80000305175781" height="131.52000427246094"/>
