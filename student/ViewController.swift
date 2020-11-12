@@ -16,21 +16,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var Daylabel: UILabel!
     @IBOutlet weak var TimeLabel: UILabel!
     @IBOutlet weak var LoginMember: UILabel!
-    @IBOutlet weak var JapaneseTimeLabel: UILabel!
-    @IBOutlet weak var MathTimeLabel: UILabel!
-    @IBOutlet weak var EnglishTimeLabel: UILabel!
-    @IBOutlet weak var ScienceTimeLabel: UILabel!
-    @IBOutlet weak var SocialTimeLabel: UILabel!
-    @IBOutlet weak var AllboardTimesLabel: UILabel!
-    @IBOutlet weak var StudentboardTimesLabel: UILabel!
+//    @IBOutlet weak var JapaneseTimeLabel: UILabel!
+//    @IBOutlet weak var MathTimeLabel: UILabel!
+//    @IBOutlet weak var EnglishTimeLabel: UILabel!
+//    @IBOutlet weak var ScienceTimeLabel: UILabel!
+//    @IBOutlet weak var SocialTimeLabel: UILabel!
+//    @IBOutlet weak var AllboardTimesLabel: UILabel!
+//    @IBOutlet weak var StudentboardTimesLabel: UILabel!
     @IBOutlet weak var BoardImage: UIImageView!
     @IBOutlet weak var CalenderImage: UIImageView!
     @IBOutlet weak var StudyRoomImage: UIImageView!
     @IBOutlet weak var MyRoomImage: UIImageView!
     @IBOutlet weak var ClassnameLabel: UILabel!
+    @IBOutlet weak var gardenView: UIView!
+    @IBOutlet weak var LoginUserView: UIView!
     
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let db = Firestore.firestore()
+    var LoginList = [String]()
     
     
     override func viewDidLoad() {
@@ -52,7 +55,30 @@ class ViewController: UIViewController {
             
             for name in data.keys{
                 if  name != "studentName" {
-                    self.LoginMember.text! += name
+                    if !self.LoginList.contains(name){
+                        self.LoginMember.text! += name
+                        self.LoginList.append(name)
+                        let chara = Character()
+                        chara.UserName.text = name
+                        chara.setCharacter(imageName: "character4.png")
+                        
+//                        if name == "taro"{
+//                            chara.setCharacter(imageName: "character4.png")
+//                        }else if name == "hana"{
+//                            chara.setCharacter(imageName: "character1.png")
+//                        }else{
+//                            chara.setCharacter(imageName: "character3.png")
+//                        }
+                        
+                        chara.frame = CGRect(x: 0, y: 0, width: CGFloat(150), height: CGFloat(200))
+                        chara.center = CGPoint(x:CGFloat(Int(self.LoginUserView.frame.minX)/3 * self.LoginList.count), y: CGFloat(self.LoginUserView.frame.minY/2))
+                        
+                        self.LoginUserView.addSubview(chara)
+                        
+                        
+                    }
+                    
+                    
                 }
             }
         }
@@ -67,73 +93,78 @@ class ViewController: UIViewController {
               print("Document data was empty.")
               return
             }
-            JapaneseTimeLabel.text = "Japanese : " + String(document.get("time") as! Int) + "分"
+//            JapaneseTimeLabel.text = "Japanese : " + String(document.get("time") as! Int) + "分"
+            
+            let numflower = document.get("time") as! Int
+            for i in 0...Int(numflower/3){
+                createFlower(flowerName: "pink_flower.png")
+            }
           }
         
         //数学の時間を表示
-        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Math").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
-            guard let document = documentSnapshot else {
-              print("Error fetching document: \(error!)")
-              return
-            }
-            guard let data = document.data() else {
-              print("Document data was empty.")
-              return
-            }
-            MathTimeLabel.text = "Math : " + String(document.get("time") as! Int) + "分"
-          }
-        
-        //英語の時間を表示
-        self.db.collection("class").document(self.appDelegate.whichClass!).collection("English").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
-            guard let document = documentSnapshot else {
-              print("Error fetching document: \(error!)")
-              return
-            }
-            guard let data = document.data() else {
-              print("Document data was empty.")
-              return
-            }
-            EnglishTimeLabel.text = "English : " + String(document.get("time") as! Int) + "分"
-          }
-        
-        //理科の時間を表示
-        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Science").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
-            guard let document = documentSnapshot else {
-              print("Error fetching document: \(error!)")
-              return
-            }
-            guard let data = document.data() else {
-              print("Document data was empty.")
-              return
-            }
-            ScienceTimeLabel.text = "Science : " + String(document.get("time") as! Int) + "分"
-          }
-        
-        //社会の時間を表示
-        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Social").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
-            guard let document = documentSnapshot else {
-              print("Error fetching document: \(error!)")
-              return
-            }
-            guard let data = document.data() else {
-              print("Document data was empty.")
-              return
-            }
-            SocialTimeLabel.text = "Social : " + String(document.get("time") as! Int) + "分"
-          }
-        
-        //全体掲示板の回数を表示
-        self.db.collection("class").document(self.appDelegate.whichClass!).collection("allboard").document("count").addSnapshotListener{ [self] documentSnapshot, error in
-            guard let document = documentSnapshot else {
-              print("Error fetching document: \(error!)")
-              return
-            }
-            guard let data = document.data() else {
-              print("Document data was empty.")
-              return
-            }
-            AllboardTimesLabel.text = "AllBoard : " + String(document.get("count") as! Int) + "回"
-          }
+//        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Math").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//              print("Error fetching document: \(error!)")
+//              return
+//            }
+//            guard let data = document.data() else {
+//              print("Document data was empty.")
+//              return
+//            }
+//            MathTimeLabel.text = "Math : " + String(document.get("time") as! Int) + "分"
+//          }
+//
+//        //英語の時間を表示
+//        self.db.collection("class").document(self.appDelegate.whichClass!).collection("English").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//              print("Error fetching document: \(error!)")
+//              return
+//            }
+//            guard let data = document.data() else {
+//              print("Document data was empty.")
+//              return
+//            }
+//            EnglishTimeLabel.text = "English : " + String(document.get("time") as! Int) + "分"
+//          }
+//
+//        //理科の時間を表示
+//        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Science").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//              print("Error fetching document: \(error!)")
+//              return
+//            }
+//            guard let data = document.data() else {
+//              print("Document data was empty.")
+//              return
+//            }
+//            ScienceTimeLabel.text = "Science : " + String(document.get("time") as! Int) + "分"
+//          }
+//
+//        //社会の時間を表示
+//        self.db.collection("class").document(self.appDelegate.whichClass!).collection("Social").document("TotalTime").addSnapshotListener{ [self] documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//              print("Error fetching document: \(error!)")
+//              return
+//            }
+//            guard let data = document.data() else {
+//              print("Document data was empty.")
+//              return
+//            }
+//            SocialTimeLabel.text = "Social : " + String(document.get("time") as! Int) + "分"
+//          }
+//
+//        //全体掲示板の回数を表示
+//        self.db.collection("class").document(self.appDelegate.whichClass!).collection("allboard").document("count").addSnapshotListener{ [self] documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//              print("Error fetching document: \(error!)")
+//              return
+//            }
+//            guard let data = document.data() else {
+//              print("Document data was empty.")
+//              return
+//            }
+//            AllboardTimesLabel.text = "AllBoard : " + String(document.get("count") as! Int) + "回"
+//          }
         
         //学生掲示板の回数を表示
         self.db.collection("class").document(self.appDelegate.whichClass!).collection("studentboard").document("count").addSnapshotListener{ [self] documentSnapshot, error in
@@ -145,9 +176,37 @@ class ViewController: UIViewController {
               print("Document data was empty.")
               return
             }
-            StudentboardTimesLabel.text = "StBoard : " + String(document.get("count") as! Int) + "回"
+//            StudentboardTimesLabel.text = "StBoard : " + String(document.get("count") as! Int) + "回"
+            
+            let numflower = document.get("count") as! Int
+            for i in 0...Int(numflower/2){
+                createFlower(flowerName: "blue_flower.png")
+            }
           }
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func createFlower(flowerName: String) -> Void {
+        print("create")
+        let flower:UIImage = UIImage(named:flowerName)!
+        let flowerImage = UIImageView(image: flower)
+        
+        let screenWidth:CGFloat = gardenView.frame.size.width
+        let screenHeight:CGFloat = gardenView.frame.size.height
+        
+        let imgWidth:CGFloat = CGFloat(103)
+        let imgHeight:CGFloat = CGFloat(146)
+        
+        let rect:CGRect =
+                    CGRect(x:0, y:0, width:imgWidth, height:imgHeight)
+        
+        flowerImage.frame = rect
+        flowerImage.center = CGPoint(x: CGFloat(CGFloat.random(in: 1...screenWidth)), y: CGFloat(CGFloat.random(in: 1...screenHeight)))
+//        flowerImage.center = CGPoint(x: CGFloat.random(in: screenWidth), y: CGFloat.random(in: screenHeight))
+        
+        self.gardenView.addSubview(flowerImage)
+                
     }
     
     //NSTimerを利用して60分の1秒ごとに呼びたす。

@@ -25,27 +25,31 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
     @IBOutlet weak var chatadd: UIButton!
     
     var  shareList = [String]()
-    var  CommentList = [Comment]()
-    let shareWindowHeight = CGFloat(150)
-    let commentHeigh:CGFloat = 50
+    var  ChatandShareList = [[String]]()
+    var shareWindowHeight = CGFloat(150)
+    var chaHeigh:CGFloat?
     var PageNum = 0
     var Note: String?
     var LoginTime: String?
+    var isChat = false
+    var otherUser: String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        subjuct.text = Note!
         shareWindowTable.delegate = self
         shareWindowTable.dataSource = self
         shareWindowTable.register (UINib(nibName: "shareWindow", bundle: nil),forCellReuseIdentifier:"shareWindow")
-        shareWindowTable.register (UINib(nibName: "CommentTableViewCell", bundle: nil),forCellReuseIdentifier:"CommentTableViewCell")
+        shareWindowTable.register (UINib(nibName: "chatWindow", bundle: nil),forCellReuseIdentifier:"chatWindow")
         shareWindowTable.tableFooterView = UIView()
         segmentedControl.selectedSegmentIndex = 0
         Page.text = "page" + String(PageNum)
         chatView.isHidden = true
         NextPageImage.transform = NextPageImage.transform.scaledBy(x: -1, y: 1)
+        chaHeigh = shareWindowTable.frame.height/2
         
         let window = sharingWindow(window: shareWindowTable)
         
@@ -106,7 +110,9 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
                     if diff.document.documentID != self.appDelegate.UserName!, diff.document.documentID != "TotalTime"{
                         print("New share")
                         shareList.append(diff.document.documentID)
-                        self.shareWindowTable.reloadData()
+                        if !isChat{
+                            self.shareWindowTable.reloadData()
+                        }
                     }
                 }
                 if diff.type == .removed{
@@ -117,7 +123,9 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
                             for i in 0...self.shareList.count{
                                 if diff.document.documentID == self.shareList[i]{
                                     self.shareList.remove(at: i)
-                                    self.shareWindowTable.reloadData()
+                                    if !isChat{
+                                        self.shareWindowTable.reloadData()
+                                    }
                                     break
                                 }
                             }
@@ -126,42 +134,6 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
                     }
                 }
             }
-        })
-    }
-    
-    func readyChat() -> Void {
-        CommentList = []
-        self.shareWindowTable.reloadData()
-        
-        self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(self.Note!).collection("Chat").addSnapshotListener({ [self]querySnapshot, err in
-            guard let snapshot = querySnapshot else {
-                print("Error fetching snapshots: \(err!)")
-                return
-            }
-            snapshot.documentChanges.forEach{diff in
-                if diff.type == .added{
-                    var comment = Comment()
-                    comment.UserName = diff.document.get("UserName") as! String
-                    comment.Content = diff.document.get("Content") as! String
-                    CommentList.append(comment)
-                    self.shareWindowTable.reloadData()
-                }
-            }
-            //                if diff.type == .removed{
-            //                    if diff.document.documentID != self.appDelegate.UserName!, diff.document.documentID != "TotalTime"{
-            //                        print(diff.document.documentID)
-            //
-            //                        for i in 0...self.shareList.count{
-            //                            if diff.document.documentID == self.shareList[i]{
-            //                                self.shareList.remove(at: i)
-            //                                self.shareWindowTable.reloadData()
-            //                                break
-            //                            }
-            //                        }
-            //
-            //                    }
-            //                }
-            
         })
     }
     
@@ -246,16 +218,37 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if MessageOrShareLabel.text == "Chat"{
-            return shareList.count
+        if isChat{
+            return ChatandShareList.count
         }else{
-            return CommentList.count
+            return shareList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルの内容を取得
-        if MessageOrShareLabel.text == "Chat"{
+        if isChat{
+            
+            if indexPath.row == 1{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "chatWindow") as! chatWindow
+                cell.otherUserName =  ChatandShareList[indexPath.row][0]
+                cell.Note = ChatandShareList[indexPath.row][1]
+                cell.readyChat()
+                
+                return cell
+                
+            }else{
+                let window = sharingWindow(window: shareWindowTable)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "shareWindow") as! shareWindow
+                cell.Username.text = ChatandShareList[indexPath.row][0]
+                cell.Username.textAlignment = .center
+                cell.Username.adjustsFontSizeToFitWidth = true
+                cell.drawWindow.readyDB(note: self.Note!, Username: shareList[indexPath.row], ShareWindow: window)
+                
+                return cell
+            }
+            
+        }else{
             let window = sharingWindow(window: shareWindowTable)
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "shareWindow") as! shareWindow
@@ -265,24 +258,16 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
             cell.drawWindow.readyDB(note: self.Note!, Username: shareList[indexPath.row], ShareWindow: window)
             
             return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
-            cell.CommentText.text = CommentList[indexPath.row].Content
-            cell.CommentText.adjustsFontSizeToFitWidth = true
-            cell.CommentUser.text = CommentList[indexPath.row].UserName
-            cell.CommentUser.adjustsFontSizeToFitWidth = true
-            
-            return cell
         }
     }
     
     
     // セルの高さを設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if MessageOrShareLabel.text == "Chat"{
-            return shareWindowHeight
+        if isChat{
+            return chaHeigh!
         }else{
-            return commentHeigh
+            return shareWindowHeight
         }
         
     }
@@ -312,15 +297,10 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
     }
     
     @IBAction func TapChatOrShare(_ sender: Any) {
-        if MessageOrShareLabel.text == "Chat"{
-            MessageOrShareLabel.text = "Share"
-            chatView.isHidden = false
-            readyChat()
-        }else{
-            MessageOrShareLabel.text = "Chat"
-            chatView.isHidden = true
-            readyShareTable()
-        }
+        MessageOrShareLabel.text = "Share"
+        isChat = false
+        chatView.isHidden = true
+        shareWindowTable.reloadData()
     }
     
     
@@ -335,7 +315,12 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
             
             chatText.layer.borderColor = UIColor.black.cgColor
             
-            self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(self.Note!).collection("Chat").addDocument(data: [
+            self.db.collection("class").document(self.appDelegate.whichClass!).collection(self.appDelegate.UserName!).document(self.Note!).collection(otherUser!).addDocument(data: [
+                "UserName": self.appDelegate.UserName!,
+                "Content": content
+            ])
+            
+            self.db.collection("class").document(self.appDelegate.whichClass!).collection(otherUser!).document(self.Note!).collection(self.appDelegate.UserName!).addDocument(data: [
                 "UserName": self.appDelegate.UserName!,
                 "Content": content
             ])
@@ -351,13 +336,28 @@ class Note: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGest
         // 任意の処理
     }
     
-    func toOtherNore(UserName: String) -> Void {
-        let otherNote = self.storyboard?.instantiateViewController(withIdentifier: "OtherNote") as! OtherUserNote
-        otherNote.Note = self.Note!
-        otherNote.UserName = UserName
-        otherNote.modalPresentationStyle = .fullScreen
-        self.present(otherNote, animated: true, completion: nil)
+    func toOtherNote(UserName: String) -> Void {
+//        let otherNote = self.storyboard?.instantiateViewController(withIdentifier: "OtherNote") as! OtherUserNote
+//        otherNote.Note = self.Note!
+//        otherNote.UserName = UserName
+//        otherNote.modalPresentationStyle = .fullScreen
+//        self.present(otherNote, animated: true, completion: nil)
+        
+        isChat = true
+        MessageOrShareLabel.text = "Chat"
+        ChatandShareList = []
+        otherUser = UserName
+        ChatandShareList.append([UserName])
+        ChatandShareList.append([UserName, Note!])
+        chatView.isHidden = false
+        shareWindowTable.reloadData()
+        
     }
+    
+    
+    
+    
+    
     
     
     

@@ -130,5 +130,68 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB7F7587-8828-43D6-A73B-5B2BAC343D06"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/ReplyBoard.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "ReplyBoard"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "EB7F7587-8828-43D6-A73B-5B2BAC343D06 - 3ad36f1a1552375c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.ReplyBoard.cellHeigh.getter : CoreGraphics.CGFloat"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/ReplyBoard.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "EB7F7587-8828-43D6-A73B-5B2BAC343D06 - b71982fdcc5320c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.ReplyBoard.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; student.ReplyBoard"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/ReplyBoard.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "1912">
+               </Location>
+               <Location
+                  uuid = "EB7F7587-8828-43D6-A73B-5B2BAC343D06 - 3914c42ac721694d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.ReplyBoard.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;student.ReplyBoard&gt;"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teranishidaina/Desktop/ios/student/student/ReplyBoard.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "1888">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -11,7 +11,6 @@ class shareWindow: UITableViewCell {
     @IBOutlet weak var Username: UILabel!
     @IBOutlet weak var drawWindow: ShareDrawView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         //        let longPress = UILongPressGestureRecognizer(target: self, action:Selector(("showOtherNote")))
@@ -33,7 +32,7 @@ class shareWindow: UITableViewCell {
     @objc func showOtherNote(sender: UILongPressGestureRecognizer) -> Void {
         if sender.state == .ended {
             let parentV = self.parentViewController() as? Note
-            parentV?.toOtherNore(UserName: Username.text!)
+            parentV?.toOtherNote(UserName: Username.text!)
         }
     }
 }
